@@ -7,7 +7,7 @@ public class Imagen extends JPanel {
 
     public Imagen() {
 
-        this.setSize(1500/2, 1061/2);
+        this.setSize((1500/3)*2, (1061/3)*2);
     }
 
 
