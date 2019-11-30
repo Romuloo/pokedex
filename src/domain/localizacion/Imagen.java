@@ -3,6 +3,10 @@ import javax.swing.JPanel;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ *
+ * @author Javier Linares Castrillon
+ */
 public class Imagen extends JPanel {
 
     public Imagen() {

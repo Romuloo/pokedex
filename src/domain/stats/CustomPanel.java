@@ -2,7 +2,10 @@ package domain.stats;
 
 import javax.swing.*;
 import java.awt.*;
-
+/**
+ *
+ * @author Javier Linares Castrillon
+ */
 public class CustomPanel extends JPanel{
     Image image = new ImageIcon("kanto.jpg").getImage();
 

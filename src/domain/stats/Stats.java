@@ -1,5 +1,7 @@
 package domain.stats;
 
+import app.Main;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import javax.swing.*;
@@ -42,9 +44,11 @@ public class Stats extends JPanel {
         thisname = name;
         JPanel panel = new CustomPanel();
         JFrame frame = new JFrame("Stats de " + name);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setSize(480, 840);
         frame.setLocationRelativeTo(null);
+        frame.setLocation(1000,1000);
+
         frame.add(new Stats(ps,ataque,defensa,ataqueEsp,defensaEsp,velocidad));
         frame.setVisible(true);
         frame.setResizable(false);
