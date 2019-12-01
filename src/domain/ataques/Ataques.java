@@ -1,12 +1,13 @@
 package domain.ataques;
 
-
-import domain.stats.BarGraph;
-import domain.stats.BarGraphModel;
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+
+/**
+ *
+ * @author Javier Linares Castrillon
+ */
 
 public class Ataques extends JPanel {
 
