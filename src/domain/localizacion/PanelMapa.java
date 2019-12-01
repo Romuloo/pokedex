@@ -19,7 +19,12 @@ public class PanelMapa  extends JPanel{
     private JList<String> list = new JList<String>();
     private JScrollPane s = new JScrollPane(list);
 
+    private Imagen i = new Imagen();
 
+
+
+
+    //Para probar
     private ArrayList<String> pokemons(){
 
         ArrayList<String> pokemons = new ArrayList<>();
@@ -27,9 +32,6 @@ public class PanelMapa  extends JPanel{
         for(int i = 0; i <100; i++) pokemons.add(" i " + i + " i");
         return pokemons;
     }
-
-
-
 
 
     //annade pokemons al modelo de la JList
@@ -61,13 +63,15 @@ public class PanelMapa  extends JPanel{
 
     //Panel Imagen
     private void initImagen(){
-        Imagen i = new Imagen();
+
         i.setLayout(null);
         i.setBounds(100,0, (1500/3)*2, (1061/3)*2);
+
         //Image icon
         ImageIcon in = new ImageIcon("res/imagenes/icon.png");
         add(i, BorderLayout.CENTER);
 
+        //Botones
         JButton b1 = new JButton();
         JButton b2 = new JButton();
         JButton b3 = new JButton();
@@ -136,10 +140,6 @@ public class PanelMapa  extends JPanel{
         b7.setBorder(null);
 
 
-
-
-
-
         b1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -149,13 +149,14 @@ public class PanelMapa  extends JPanel{
         b2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                setModelo();
+
+                Stats.start("res/imagenes/fotos/150.png","Mewtwo",416, 319,279,407,279,359   );
             }
         });
         b3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                setModelo();
+                Stats.start("res/imagenes/fotos/150.png","Mewtwo",416, 319,279,407,279,359   );
             }
         });
 

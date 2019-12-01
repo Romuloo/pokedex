@@ -17,6 +17,8 @@ public class Stats extends JPanel {
     private BarGraphModel model;
     private static String thisPath;
 
+    private static JFrame frame;
+
     private ImageIcon image = new ImageIcon(thisPath);
     private Font f = new Font("Calibri", Font.BOLD, 26);
     private static String thisname;
@@ -38,12 +40,25 @@ public class Stats extends JPanel {
     }
 
 
+    //Singleton del frame
+
+    private synchronized static void createFrame(){
+        if(frame == null)
+            frame = new JFrame();
+    }
+
+    private static JFrame getFrame(){
+        if(frame == null)  createFrame();
+        return frame;
+
+    }
+
 
     public static void start(String path, String name, int ps, int ataque, int defensa, int ataqueEsp, int defensaEsp, int velocidad) {
         thisPath = path;
         thisname = name;
-        JPanel panel = new CustomPanel();
-        JFrame frame = new JFrame("Stats de " + name);
+        JFrame frame = getFrame();
+        frame.setTitle("Stats de " + name);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setSize(480, 840);
         frame.setLocationRelativeTo(null);
@@ -52,6 +67,5 @@ public class Stats extends JPanel {
         frame.add(new Stats(ps,ataque,defensa,ataqueEsp,defensaEsp,velocidad));
         frame.setVisible(true);
         frame.setResizable(false);
-        frame.add(panel);
     }
 }
