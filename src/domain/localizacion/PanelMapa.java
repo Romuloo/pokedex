@@ -164,7 +164,6 @@ public class PanelMapa  extends JPanel{
         b4.addActionListener((new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 Stats.start("res/imagenes/fotos/4.png", "Charmander",200,149,101,190,100,130);
 
             }

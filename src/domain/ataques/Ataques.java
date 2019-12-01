@@ -26,7 +26,7 @@ public class Ataques extends JPanel {
 
 
 
-
+    //Provisional
     private ArrayList<String> ataques(){
 
         ArrayList<String> ataques = new ArrayList<>();
@@ -71,7 +71,7 @@ public class Ataques extends JPanel {
         setModelo();
         list.setBackground(Color.pink);
         s.setBackground(Color.green);
-        s.setBounds(5,440,470,340);
+        s.setBounds(5,460,470,310);
         add(s);
 
     }
