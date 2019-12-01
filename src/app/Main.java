@@ -1,4 +1,5 @@
 package app;
+import DAO.Conexion;
 import domain.localizacion.*;
 import domain.stats.*;
 
@@ -9,7 +10,7 @@ import java.awt.*;
  * @author Javier Linares Castrillon
  */
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args){
 
         JTabbedPane jt = new JTabbedPane();
         PanelMapa p = new PanelMapa();
@@ -23,6 +24,6 @@ public class Main {
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setVisible(true);
         f.setResizable(false);
-
+       Conexion.conectar();
     }
 }
