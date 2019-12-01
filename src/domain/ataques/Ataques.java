@@ -77,27 +77,26 @@ public class Ataques extends JPanel {
     }
 
 
-    private synchronized static void createFrame(){
-        if(frame == null)
-            frame = new JFrame();
-        frame.setLocationRelativeTo(null);
-        frame.setLocation(1000,1000);
+    private synchronized static void frameManager(){
+        if(frame == null) frame = new JFrame();
+        else if(frame != null) frameManagerAux();
     }
-
-    private static JFrame getFrame(){
-        if(frame == null)  createFrame();
-        return frame;
+    private synchronized static void frameManagerAux(){
+        frame.dispose();
+        frame = new JFrame();
 
     }
-
 
 
     public static void ataques(String path, String name) {
-        thisPath = path;
-        thisName = name;
-        JFrame frame = getFrame();
+
+        frameManager();
+        frame.setLocationRelativeTo(null);
+        frame.setLocation(1000,1000);
         frame.setTitle("Ataques de " + name);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        thisPath = path;
+        thisName = name;
         frame.setSize(480, 840);
         frame.add(new Ataques(path, name));
         frame.setVisible(true);

@@ -39,35 +39,34 @@ public class Stats extends JPanel {
 
     }
 
-
-    //Singleton del frame
-
-    private synchronized static void createFrame(){
-        if(frame == null)
-            frame = new JFrame();
-        frame.setLocationRelativeTo(null);
-        frame.setLocation(1000,1000);
+    //En vez de Singleton puesto que cada Frame tiene unas caracteristicas especiales.
+    //Con Singleton llegaba a unos bugs muy graciosos. Se creaba un frame con los datos anteriores.
+    private synchronized static void frameManager(){
+        if(frame == null) frame = new JFrame();
+        else if(frame != null) frameManagerAux();
     }
-
-    private static JFrame getFrame(){
-        if(frame == null)  createFrame();
-
-        return frame;
+    private synchronized static void frameManagerAux(){
+        frame.dispose();
+        frame = new JFrame();
 
     }
 
 
     public static void start(String path, String name, int ps, int ataque, int defensa, int ataqueEsp, int defensaEsp, int velocidad) {
+
+        frameManager();
+        frame.setLocationRelativeTo(null);
+        frame.setLocation(1000,1000);
+        frame.setTitle("Stats de " + name);
         thisPath = path;
         thisname = name;
-        JFrame frame = getFrame();
-        frame.setTitle("Stats de " + name);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setSize(480, 840);
-
-
         frame.add(new Stats(ps,ataque,defensa,ataqueEsp,defensaEsp,velocidad));
         frame.setVisible(true);
         frame.setResizable(false);
+
     }
+
+
 }

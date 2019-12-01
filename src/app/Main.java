@@ -15,7 +15,6 @@ public class Main {
         PanelMapa p = new PanelMapa();
         JFrame f = new JFrame();
         jt.add(p);
-        //Stats.start("res/imagenes/fotos/4.png", "Charmander",200,149,101,190,100,130);
 
         f.add(jt);
         jt.setBackground(Color.black);

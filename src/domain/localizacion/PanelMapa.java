@@ -14,6 +14,7 @@ import java.util.ArrayList;
  *
  * @author Javier Linares Castrillon
  */
+
 public class PanelMapa  extends JPanel{
 
     private DefaultListModel modelo = new DefaultListModel();
@@ -150,7 +151,6 @@ public class PanelMapa  extends JPanel{
         b2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 Stats.start("res/imagenes/fotos/150.png","Mewtwo",416, 319,279,407,279,359   );
             }
         });
@@ -158,6 +158,23 @@ public class PanelMapa  extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 Ataques.ataques("res/imagenes/fotos/151.png", "Mew");
+            }
+        });
+
+        b4.addActionListener((new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                Stats.start("res/imagenes/fotos/4.png", "Charmander",200,149,101,190,100,130);
+
+            }
+        }));
+
+        b5.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Ataques.ataques("res/imagenes/fotos/150.png", "MewTwo");
+
             }
         });
 
