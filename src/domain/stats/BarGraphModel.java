@@ -12,6 +12,7 @@ import java.util.List;
  */
 public class BarGraphModel {
 
+
     public static class BarItem {
         public int percentage;
         public int width;

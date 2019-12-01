@@ -1,5 +1,6 @@
 package domain.localizacion;
 
+import domain.ataques.Ataques;
 import domain.stats.Stats;
 
 import javax.swing.*;
@@ -156,7 +157,7 @@ public class PanelMapa  extends JPanel{
         b3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Stats.start("res/imagenes/fotos/150.png","Mewtwo",416, 319,279,407,279,359   );
+                Ataques.ataques("res/imagenes/fotos/151.png", "Mew");
             }
         });
 

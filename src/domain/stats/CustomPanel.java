@@ -8,7 +8,7 @@ import java.awt.*;
  */
 
 /**
- * Esta clase esta obsoleta.
+ * Esta clase está obsoleta.
  * Ha sido reemplazada por PanelMapa.
  */
 public class CustomPanel extends JPanel{
