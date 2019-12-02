@@ -22,7 +22,7 @@ public class Conexion {
 
         Connection con = null;
         Statement stmt = null;
-        String url = "jdbc:sqlite:/Users/javier/Desktop/1ß Cuatri/practicaMTP_03/pokedexMTP/dataBase/Pokedex.db";
+        String url = "jdbc:sqlite:dataBase/Pokedex.db";
 
         try {
                 Class.forName("org.sqlite.JDBC");
