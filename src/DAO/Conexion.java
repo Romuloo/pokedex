@@ -17,13 +17,13 @@ package DAO;
 import java.sql.*;
 import java.util.ArrayList;
 
+import domain.stats.Pokemon;
+import domain.stats.Stats;
+
 public class Conexion {
     private static Connection con = null;
     private static Statement stmt = null;
 
-    public static  void connect(){
-        conectar();
-    }
 
     private static Connection conectar() {
 
@@ -81,9 +81,36 @@ public class Conexion {
         return pokemons;
     }
 
+    public static Stats pokemonStats(String n){
+        conectar();
+       Stats s  = new Stats();
+       String path = "";
+        try {
+            ResultSet resultado = stmt.executeQuery("select * from pokemon where pokemon.nombre = "+ n);
+            while (resultado.next()) {
 
+                path = "res/imagenes/fotos/" +  resultado.getInt("idPokemon");
+                s.setPath(path);
+                s.setName(n);
+                s.setPs(resultado.getInt("Ps"));
+                s.setAtaque(resultado.getInt("Ataque"));
+                s.setDefensa(resultado.getInt("Defensa"));
+                s.setAtaqueEsp(resultado.getInt("AtaqueEsp"));
+                s.setDefensaEsp(resultado.getInt("DefensaEsp"));
+                s.setVelocidad(resultado.getInt("Velocidad"));
+            }
+            con.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return s;
+    }
 
 }
+
+
+
+
 
 
 

@@ -14,10 +14,14 @@
 package domain.stats;
 
 
+import DAO.Conexion;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import javax.swing.*;
 import java.awt.*;
+import java.sql.Connection;
+
 /**
  *
  * @author Javier Linares Castrillon
@@ -28,18 +32,33 @@ public class Stats extends JPanel {
     private BarGraphModel model;
     private static String thisPath;
 
+
+
     private ImageIcon image = new ImageIcon(thisPath);
     private Font f = new Font("Calibri", Font.BOLD, 26);
 
     private static String thisname;
     private static JFrame frame;
 
-    public Stats(int ps, int ataque, int defensa, int ataqueEsp, int defensaEsp, int velocidad) {
+    private String path;
+
+
+
+    private int ps;
+    private int ataque;
+    private int defensa;
+    private int ataqueEsp;
+    private int defensaEsp;
+    private int velocidad;
+
+    public Stats(){
         setBackground(new Color(27, 29, 77));
         this.graph = new BarGraph(ps,ataque,defensa,ataqueEsp,defensaEsp,velocidad);
         this.model = graph.getModel();
-
     }
+
+
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -65,6 +84,7 @@ public class Stats extends JPanel {
 
     public static void start(String path, String name, int ps, int ataque, int defensa, int ataqueEsp, int defensaEsp, int velocidad) {
 
+
         frameManager();
         frame.setLocationRelativeTo(null);
         frame.setLocation(1000,1000);
@@ -73,11 +93,66 @@ public class Stats extends JPanel {
         thisname = name;
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setSize(480, 840);
-        frame.add(new Stats(ps,ataque,defensa,ataqueEsp,defensaEsp,velocidad));
+        frame.add(Conexion.pokemonStats("Pikachu"));
         frame.setVisible(true);
         frame.setResizable(false);
 
     }
 
+    public int getPs() {
+        return ps;
+    }
+
+    public void setPs(int ps) {
+        this.ps = ps;
+    }
+
+    public int getAtaque() {
+        return ataque;
+    }
+
+    public void setAtaque(int ataque) {
+        this.ataque = ataque;
+    }
+
+    public int getDefensa() {
+        return defensa;
+    }
+
+    public void setDefensa(int defensa) {
+        this.defensa = defensa;
+    }
+
+    public int getAtaqueEsp() {
+        return ataqueEsp;
+    }
+
+    public void setAtaqueEsp(int ataqueEsp) {
+        this.ataqueEsp = ataqueEsp;
+    }
+
+    public int getDefensaEsp() {
+        return defensaEsp;
+    }
+
+    public void setDefensaEsp(int defensaEsp) {
+        this.defensaEsp = defensaEsp;
+    }
+
+    public int getVelocidad() {
+        return velocidad;
+    }
+
+    public void setVelocidad(int velocidad) {
+        this.velocidad = velocidad;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
 
 }

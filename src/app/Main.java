@@ -15,6 +15,7 @@
 package app;
 import DAO.Conexion;
 import domain.localizacion.*;
+import domain.movimientos.Movimientos;
 import domain.stats.*;
 
 import javax.swing.*;
@@ -29,7 +30,9 @@ public class Main {
         JTabbedPane jt = new JTabbedPane();
         PanelMapa p = new PanelMapa();
         JFrame f = new JFrame();
+        Movimientos m = new Movimientos();
         jt.add(p, "Localizaciones");
+        jt.add(m, "Movimientos");
 
         f.add(jt);
         jt.setBackground(Color.black);
@@ -39,5 +42,6 @@ public class Main {
         f.setVisible(true);
         f.setResizable(false);
          //Conexion.connect();
+        //
     }
 }

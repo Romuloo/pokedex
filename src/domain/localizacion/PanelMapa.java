@@ -15,7 +15,6 @@
 package domain.localizacion;
 
 import DAO.Conexion;
-import domain.ataques.Ataques;
 import domain.stats.Stats;
 
 import javax.swing.*;
@@ -37,13 +36,12 @@ public class PanelMapa  extends JPanel{
 
     private Imagen i = new Imagen();
 
-    int c;
+    private int indexLocalizacion;
 
 
 
-    //Para probar
     private ArrayList<String> pokemons() {
-        return Conexion.pokemonLocalizaciones(c);
+        return Conexion.pokemonLocalizaciones(indexLocalizacion);
     }
 
 
@@ -60,7 +58,7 @@ public class PanelMapa  extends JPanel{
     //establece el modelo de la JList
     private void setModelo(int c){
         removePokemons();
-        this.c = c;
+        this.indexLocalizacion = c;
         addPokemons();
         list.setModel(modelo);
     }
@@ -183,7 +181,10 @@ public class PanelMapa  extends JPanel{
 
         b7.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) { setModelo(2); }
+            public void actionPerformed(ActionEvent e) {
+                setModelo(2);
+                Stats.start();
+            }
         });
 
     }

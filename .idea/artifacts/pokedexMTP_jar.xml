@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="pokedexMTP.jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/pokedexMTP_jar</output-path>
+    <root id="archive" name="pokedexMTP.jar">
+      <element id="module-output" name="pokedexMTP" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/sqlite-jdbc-3.27.2.1.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
