@@ -38,6 +38,6 @@ public class Main {
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setVisible(true);
         f.setResizable(false);
-       Conexion.conectar();
+         //Conexion.connect();
     }
 }

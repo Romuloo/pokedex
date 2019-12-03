@@ -21,7 +21,11 @@ public class Conexion {
     private static Connection con = null;
     private static Statement stmt = null;
 
-    public static Connection conectar() {
+    public static  void connect(){
+        conectar();
+    }
+
+    private static Connection conectar() {
 
 
         String url = "jdbc:sqlite:dataBase/Pokedex.db";
@@ -41,22 +45,26 @@ public class Conexion {
 
     public static ArrayList<String> pokemonNombres() {
 
+        conectar();
+
         ArrayList<String> pokemons = new ArrayList<>();
         try {
             ResultSet resultado = stmt.executeQuery("select nombre from pokemon");
 
             while (resultado.next()){
                 pokemons.add(resultado.getString("Nombre"));
-
             }
-
+            con.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
         return pokemons;
+
     }
 
     public static ArrayList<String> pokemonLocalizaciones(int i){
+
+        conectar();
 
         ArrayList<String> pokemons = new ArrayList<>();
 
@@ -65,8 +73,8 @@ public class Conexion {
                     "p.idPokemon = pl.idPokemon and l.idLocalizacion = pl.idLocalizacion and l.idLocalizacion = " + i);
             while (resultado.next()) {
                 pokemons.add(resultado.getString("Nombre"));
-
             }
+            con.close();
         }catch (Exception e){
             e.printStackTrace();
         }
