@@ -183,7 +183,7 @@ public class PanelMapa  extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 setModelo(2);
-                Stats.start();
+                Stats.start("Caterpie");
             }
         });
 

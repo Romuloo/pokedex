@@ -41,9 +41,7 @@ public class Stats extends JPanel {
     private static JFrame frame;
 
     private String path;
-
-
-
+    private String nombre;
     private int ps;
     private int ataque;
     private int defensa;
@@ -51,7 +49,17 @@ public class Stats extends JPanel {
     private int defensaEsp;
     private int velocidad;
 
-    public Stats(){
+    public Stats(String path, String nombre, int ps, int ataque, int defensa, int ataqueEsp, int defensaEsp, int velocidad ){
+
+        this.path = path;
+        this.nombre = nombre;
+        this.ps = ps;
+        this.ataque = ataque;
+        this.defensa = defensa;
+        this.ataqueEsp = ataqueEsp;
+        this.defensaEsp = defensaEsp;
+        this.velocidad = velocidad;
+
         setBackground(new Color(27, 29, 77));
         this.graph = new BarGraph(ps,ataque,defensa,ataqueEsp,defensaEsp,velocidad);
         this.model = graph.getModel();
@@ -82,18 +90,20 @@ public class Stats extends JPanel {
     }
 
 
-    public static void start(String path, String name, int ps, int ataque, int defensa, int ataqueEsp, int defensaEsp, int velocidad) {
+    public static void start(String n) {
 
+
+        Pokemon p = Conexion.pokemonStats(n);
 
         frameManager();
         frame.setLocationRelativeTo(null);
         frame.setLocation(1000,1000);
-        frame.setTitle("Stats de " + name);
-        thisPath = path;
-        thisname = name;
+        frame.setTitle("Stats de " + p.getName());
+        thisPath = p.getPath();
+        thisname = p.getName();
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setSize(480, 840);
-        frame.add(Conexion.pokemonStats("Pikachu"));
+        frame.add(new Stats(p.getPath(), p.getName(), p.getPs(), p.getAt(), p.getDef(), p.getAte(), p.getDefe(), p.getVel()));
         frame.setVisible(true);
         frame.setResizable(false);
 

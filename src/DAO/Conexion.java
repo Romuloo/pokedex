@@ -81,29 +81,51 @@ public class Conexion {
         return pokemons;
     }
 
-    public static Stats pokemonStats(String n){
+    public static Pokemon pokemonStats(String n){
         conectar();
-       Stats s  = new Stats();
+       Pokemon p = new Pokemon();
        String path = "";
-        try {
-            ResultSet resultado = stmt.executeQuery("select * from pokemon where pokemon.nombre = "+ n);
+
+       try {
+            ResultSet resultado = stmt.executeQuery("select * from pokemon p where p.nombre = \""+ n + "\"");
             while (resultado.next()) {
 
-                path = "res/imagenes/fotos/" +  resultado.getInt("idPokemon");
-                s.setPath(path);
-                s.setName(n);
-                s.setPs(resultado.getInt("Ps"));
-                s.setAtaque(resultado.getInt("Ataque"));
-                s.setDefensa(resultado.getInt("Defensa"));
-                s.setAtaqueEsp(resultado.getInt("AtaqueEsp"));
-                s.setDefensaEsp(resultado.getInt("DefensaEsp"));
-                s.setVelocidad(resultado.getInt("Velocidad"));
+                path = "res/imagenes/fotos/" +  resultado.getInt("idPokemon") + ".png";
+                p.setName(n);
+                p.setName(resultado.getString("Nombre"));
+                p.setPath(path);
+                p.setPs(resultado.getInt("Ps"));
+                p.setAt(resultado.getInt("Ataque"));
+                p.setDef(resultado.getInt("Defensa"));
+                p.setAte(resultado.getInt("AtaqueEsp"));
+                p.setDefe(resultado.getInt("DefensaEsp"));
+                p.setVel(resultado.getInt("Velocidad"));
             }
             con.close();
         }catch (Exception e){
             e.printStackTrace();
         }
-        return s;
+        return p;
+    }
+
+    public static ArrayList<String> pokemonAtaques(String n){
+
+        conectar();
+
+        String path = "";
+        ArrayList<String> ataques = new ArrayList<>();
+
+        try {
+            ResultSet resultado = stmt.executeQuery("select m.nombre from pokemon p, movimiento m, pokemonMovimientoForma pm " +
+                    "where p.idPokemon = pm.idPokemon and pm.idMovimiento = m.idMovimiento and p.nombre = \""+ n + "\"");
+            while (resultado.next()) {
+                ataques.add(resultado.getString("Nombre"));
+            }
+            con.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return ataques;
     }
 
 }
