@@ -15,20 +15,21 @@
 package DAO;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class Conexion {
+    private static Connection con = null;
+    private static Statement stmt = null;
 
     public static Connection conectar() {
 
-        Connection con = null;
-        Statement stmt = null;
+
         String url = "jdbc:sqlite:dataBase/Pokedex.db";
 
         try {
-                Class.forName("org.sqlite.JDBC");
-                 con = DriverManager.getConnection(url);
-                 stmt = con.createStatement();
-                 ResultSet resultado = stmt.executeQuery("select * from pokemon");
+            Class.forName("org.sqlite.JDBC");
+            con = DriverManager.getConnection(url);
+            stmt = con.createStatement();
 
 
         } catch (Exception e) {
@@ -38,5 +39,44 @@ public class Conexion {
         return con;
     }
 
-    //public static get
+    public static ArrayList<String> pokemonNombres() {
+
+        ArrayList<String> pokemons = new ArrayList<>();
+        try {
+            ResultSet resultado = stmt.executeQuery("select nombre from pokemon");
+
+            while (resultado.next()){
+                pokemons.add(resultado.getString("Nombre"));
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return pokemons;
+    }
+
+    public static ArrayList<String> pokemonLocalizaciones(int i){
+
+        ArrayList<String> pokemons = new ArrayList<>();
+
+        try {
+            ResultSet resultado = stmt.executeQuery("select p.nombre from pokemon p, localizacion l, pokemonLocalizacion pl where " +
+                    "p.idPokemon = pl.idPokemon and l.idLocalizacion = pl.idLocalizacion and l.idLocalizacion = " + i);
+            while (resultado.next()) {
+                pokemons.add(resultado.getString("Nombre"));
+
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return pokemons;
+    }
+
+
+
 }
+
+
+
+

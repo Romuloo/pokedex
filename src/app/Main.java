@@ -29,7 +29,7 @@ public class Main {
         JTabbedPane jt = new JTabbedPane();
         PanelMapa p = new PanelMapa();
         JFrame f = new JFrame();
-        jt.add(p);
+        jt.add(p, "Localizaciones");
 
         f.add(jt);
         jt.setBackground(Color.black);

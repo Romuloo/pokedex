@@ -14,6 +14,7 @@
 
 package domain.localizacion;
 
+import DAO.Conexion;
 import domain.ataques.Ataques;
 import domain.stats.Stats;
 
@@ -36,35 +37,32 @@ public class PanelMapa  extends JPanel{
 
     private Imagen i = new Imagen();
 
+    int c;
 
 
 
     //Para probar
-    private ArrayList<String> pokemons(){
-
-        ArrayList<String> pokemons = new ArrayList<>();
-
-        for(int i = 0; i <100; i++) pokemons.add(" i " + i + " i");
-        return pokemons;
+    private ArrayList<String> pokemons() {
+        return Conexion.pokemonLocalizaciones(c);
     }
 
 
     //annade pokemons al modelo de la JList
     private void addPokemons(){
-
         for(int i = 0; i < pokemons().size(); i++) modelo.add(i, pokemons().get(i));
     }
 
     //elimina pokemons del modelo de la JList
     private void removePokemons(){
-        for(int i = pokemons().size() - 1; i >= 0; i--) modelo.remove(i);
+        modelo.removeAllElements();
     }
 
     //establece el modelo de la JList
-    private void setModelo(){
-       if(modelo.isEmpty()) addPokemons();
-       else if(!modelo.isEmpty()) removePokemons();
-       list.setModel(modelo);
+    private void setModelo(int c){
+        removePokemons();
+        this.c = c;
+        addPokemons();
+        list.setModel(modelo);
     }
 
     //JList
@@ -157,37 +155,35 @@ public class PanelMapa  extends JPanel{
 
         b1.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                setModelo();
-            }
+            public void actionPerformed(ActionEvent e) { setModelo(1); }
         });
         b2.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                Stats.start("res/imagenes/fotos/150.png","Mewtwo",416, 319,279,407,279,359   );
-            }
+            public void actionPerformed(ActionEvent e) { setModelo(3); }
         });
         b3.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                Ataques.ataques("res/imagenes/fotos/151.png", "Mew");
-            }
+            public void actionPerformed(ActionEvent e) { setModelo(5); }
         });
 
         b4.addActionListener((new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                Stats.start("res/imagenes/fotos/4.png", "Charmander",200,149,101,190,100,130);
-
-            }
+            public void actionPerformed(ActionEvent e) { setModelo(4); }
         }));
 
         b5.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                Ataques.ataques("res/imagenes/fotos/150.png", "MewTwo");
+            public void actionPerformed(ActionEvent e) { setModelo(7); }
+        });
 
-            }
+        b6.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) { setModelo(6); }
+        });
+
+        b7.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) { setModelo(2); }
         });
 
     }
