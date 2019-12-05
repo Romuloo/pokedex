@@ -203,6 +203,38 @@ public class Conexion {
 
     }
 
+    public static Pokemon[] getPokemons() throws SQLException{
+        ResultSet result1=stmt.executeQuery("SELECT * FROM pokemon ORDER BY idpokemon");
+        Pokemon[] pokemons = new Pokemon[200];
+        int contador=0;
+        while(result1.next()){
+            pokemons[contador]= new Pokemon();
+            pokemons[contador].setAltura(result1.getDouble("altura"));
+            pokemons[contador].setPeso(result1.getInt("peso"));
+            pokemons[contador].setCategoria(result1.getString("categoria"));
+            pokemons[contador].setId(result1.getInt("idpokemon"));
+            pokemons[contador].setName(result1.getString("nombre"));
+            pokemons[contador].setPath("res/imagenes/fotos/" + result1.getString("idPokemon") + ".png");
+            contador++;
+        }
+        pokemons[151]=new Pokemon();
+        pokemons[151].setPath("res/imagenes/fotos/0.png");
+        ResultSet result2=stmt.executeQuery("SELECT * FROM pokemontipo ORDER BY idPokemon");
+        int indice;
+        while(result2.next()){
+            indice=result2.getInt("idpokemon") -1;
+            pokemons[indice].setTipo(result2.getInt("idTipo"));
+        }
+        ResultSet result3=stmt.executeQuery("SELECT * FROM lineaEVo ORDER BY idPokemon");
+        while(result3.next()){
+            indice=result3.getInt("idpokemon")-1;
+            pokemons[indice].setLineaEvo(result3.getInt("evo1"));
+            pokemons[indice].setLineaEvo(result3.getInt("evo2"));
+            pokemons[indice].setLineaEvo(result3.getInt("evo3"));
+        }
+        return pokemons;
+    }
+
 
 }
 

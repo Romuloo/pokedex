@@ -15,11 +15,17 @@
 package app;
 import DAO.Conexion;
 import domain.localizacion.*;
+import domain.mainPage.ListaPokemons;
 import domain.movimientos.Movimientos;
+import domain.mainPage.ListaPokemons;
 import domain.stats.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Javier Linares Castrillon
@@ -27,22 +33,29 @@ import java.awt.*;
 public class Main {
     public static void main(String[] args){
 
-        Conexion.conectar();
-        JTabbedPane jt = new JTabbedPane();
-        PanelMapa p = new PanelMapa();
-        JFrame f = new JFrame();
-        Movimientos m = new Movimientos();
-        jt.add(p, "Localizaciones");
-        jt.add(m, "Movimientos");
+        try {
+            Conexion.conectar();
+            JTabbedPane jt = new JTabbedPane();
+            PanelMapa p = new PanelMapa();
+            ListaPokemons l = new ListaPokemons();
+            JFrame f = new JFrame();
+            Movimientos m = new Movimientos();
 
-        f.add(jt);
-        jt.setBackground(Color.black);
-        f.setTitle("Pokedex");
-        f.setSize(((1500/3)*2)+100,(1061/3)*2+50);
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        f.setVisible(true);
-        f.setResizable(false);
-         //Conexion.connect();
-        //
+
+            jt.add(l, "Pokemons");
+            jt.add(m, "Movimientos");
+            jt.add(p, "Localizaciones");
+
+
+            f.add(jt);
+            jt.setBackground(Color.black);
+            f.setTitle("Pokedex");
+            f.setSize(((1500/3)*2)+100,(1061/3)*2+50);
+            f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            f.setVisible(true);
+            f.setResizable(false);
+        } catch (SQLException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
