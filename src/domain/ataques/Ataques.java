@@ -9,9 +9,11 @@
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  See the License for the specific language governing permissions and
  limitations under the License.
-
  */
 package domain.ataques;
+
+import DAO.Conexion;
+import domain.stats.Pokemon;
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,32 +28,31 @@ public class Ataques extends JPanel {
 
 
 
-    private static String thisName;
+    private static String pokeName;
     private static String thisPath;
     private static JFrame frame;
+    private Pokemon p;
 
     private DefaultListModel modelo = new DefaultListModel();
     private JList<String> list = new JList<String>();
     private JScrollPane s = new JScrollPane(list);
 
-    private ImageIcon image = new ImageIcon(thisPath);
+
+   // private ImageIcon image = new ImageIcon(thisPath);
     private Font f = new Font("Calibri", Font.BOLD, 26);
 
 
 
     //Provisional
     private ArrayList<String> ataques(){
-
-        ArrayList<String> ataques = new ArrayList<>();
-
-        for(int i = 0; i <100; i++) ataques.add(" i " + i + " i");
-        return ataques;
+        return Conexion.pokemonMovimientos(pokeName);
     }
 
-    public Ataques(String path, String name) {
+    public Ataques(String name) {
+        p = Conexion.pokemonNombrePath(name);
+        thisPath = p.getPath();
+        pokeName = p.getName();
         setLayout(null);
-        this.thisPath = path;
-        this.thisName = name;
         setBackground(new Color(146, 207, 138));
         initList();
     }
@@ -59,10 +60,11 @@ public class Ataques extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+        ImageIcon image = new ImageIcon(thisPath);
         g.drawImage(image.getImage(),40 ,50,400,400,null);
         g.setFont(f);
         g.setColor(Color.darkGray);
-        g.drawString(thisName, 180, 30);
+        g.drawString(pokeName, 180, 30);
 
     }
     private void addAtaques(){
@@ -101,17 +103,16 @@ public class Ataques extends JPanel {
     }
 
 
-    public static void ataques(String path, String name) {
+    public static void ataques(String name) {
+
 
         frameManager();
         frame.setLocationRelativeTo(null);
         frame.setLocation(1000,1000);
         frame.setTitle("Ataques de " + name);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        thisPath = path;
-        thisName = name;
         frame.setSize(480, 840);
-        frame.add(new Ataques(path, name));
+        frame.add(new Ataques(name));
         frame.setVisible(true);
         frame.setResizable(false);
     }

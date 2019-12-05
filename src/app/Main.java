@@ -27,6 +27,7 @@ import java.awt.*;
 public class Main {
     public static void main(String[] args){
 
+        Conexion.conectar();
         JTabbedPane jt = new JTabbedPane();
         PanelMapa p = new PanelMapa();
         JFrame f = new JFrame();

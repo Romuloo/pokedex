@@ -17,15 +17,24 @@ package DAO;
 import java.sql.*;
 import java.util.ArrayList;
 
+import domain.movimientos.Ataque;
 import domain.stats.Pokemon;
 import domain.stats.Stats;
 
+/**
+ *
+ * @author Javier Linares y Andrés Iturria.
+ */
 public class Conexion {
     private static Connection con = null;
     private static Statement stmt = null;
 
 
-    private static Connection conectar() {
+    /**
+     *
+     * @return establece una conexión con la base de datos.
+     */
+    public static Connection conectar() {
 
 
         String url = "jdbc:sqlite:dataBase/Pokedex.db";
@@ -43,9 +52,12 @@ public class Conexion {
         return con;
     }
 
+    /**
+     *
+     * @return nombre de todos los pokemons.
+     */
     public static ArrayList<String> pokemonNombres() {
 
-        conectar();
 
         ArrayList<String> pokemons = new ArrayList<>();
         try {
@@ -54,7 +66,7 @@ public class Conexion {
             while (resultado.next()){
                 pokemons.add(resultado.getString("Nombre"));
             }
-            con.close();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -62,27 +74,37 @@ public class Conexion {
 
     }
 
+    /**
+     *
+     * @param i id de la localizacion
+     * @return nombre de todos los pokemons que se localizan en una localizacion de id i.
+     */
+
     public static ArrayList<String> pokemonLocalizaciones(int i){
 
-        conectar();
+
 
         ArrayList<String> pokemons = new ArrayList<>();
 
         try {
             ResultSet resultado = stmt.executeQuery("select p.nombre from pokemon p, localizacion l, pokemonLocalizacion pl where " +
-                    "p.idPokemon = pl.idPokemon and l.idLocalizacion = pl.idLocalizacion and l.idLocalizacion = " + i);
+                    "p.idPokemon = pl.idPokemon and l.idLocalizacion = pl.idLocalizacion and l.idLocalizacion = " + i + " ORDER BY p.idPokemon");
             while (resultado.next()) {
                 pokemons.add(resultado.getString("Nombre"));
             }
-            con.close();
         }catch (Exception e){
             e.printStackTrace();
         }
         return pokemons;
     }
 
+    /**
+     *
+     * @param n nombre del pokemon del  que se desean saber sus stats.
+     * @return un objeto de la clase Pokemon con las stats en cuestion.
+     */
     public static Pokemon pokemonStats(String n){
-        conectar();
+
        Pokemon p = new Pokemon();
        String path = "";
 
@@ -101,34 +123,90 @@ public class Conexion {
                 p.setDefe(resultado.getInt("DefensaEsp"));
                 p.setVel(resultado.getInt("Velocidad"));
             }
-            con.close();
         }catch (Exception e){
             e.printStackTrace();
         }
         return p;
     }
 
-    public static ArrayList<String> pokemonAtaques(String n){
+    /**
+     *
+     * @param n nombre del pokemon.
+     * @return el nombre y el path de la imagen de un pokemon de nombre n.
+     */
+    public static Pokemon pokemonNombrePath(String n){
 
-        conectar();
-
+        Pokemon p = new Pokemon();
         String path = "";
+
+        try {
+            ResultSet resultado = stmt.executeQuery("select  p.nombre, p.idPokemon from pokemon p where p.nombre = \""+ n + "\"");
+            while (resultado.next()) {
+
+                path = "res/imagenes/fotos/" +  resultado.getInt("idPokemon") + ".png";
+                p.setName(resultado.getString("nombre"));
+                p.setPath(path);
+
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return p;
+    }
+
+    /**
+     *
+     * @param n nombre del pokemon del que se desean saber sus ataques.
+     * @return todos los movimientos que es capaz de aprender un pokemon de nombre n.
+     */
+    public static ArrayList<String> pokemonMovimientos(String n){
+
         ArrayList<String> ataques = new ArrayList<>();
 
         try {
-            ResultSet resultado = stmt.executeQuery("select m.nombre from pokemon p, movimiento m, pokemonMovimientoForma pm " +
-                    "where p.idPokemon = pm.idPokemon and pm.idMovimiento = m.idMovimiento and p.nombre = \""+ n + "\"");
+            ResultSet resultado = stmt.executeQuery("select m.nombre from pokemon p, movimiento m, pokemonMovimientoForma" +
+                    " pm where p.idPokemon = pm.idPokemon and pm.idMovimiento = m.idMovimiento and p.nombre = \""+ n + "\"");
             while (resultado.next()) {
                 ataques.add(resultado.getString("Nombre"));
             }
-            con.close();
         }catch (Exception e){
             e.printStackTrace();
         }
         return ataques;
     }
 
+    /**
+     *
+     * @return un arrayList con todos los movimientos
+     */
+    public static ArrayList<Ataque> movimientos(){
+
+        ArrayList<Ataque> ataques = new ArrayList<>();
+
+        try {
+            ResultSet resultado = stmt.executeQuery("select * from movimiento ORDER BY idMovimiento");
+            while (resultado.next()) {
+             Ataque a = new Ataque();
+             a.setNombre(resultado.getString("Nombre"));
+             a.setDescripcion(resultado.getString("Descripcion"));
+             a.setPp(resultado.getInt("pp"));
+             a.setPotencia(resultado.getInt("Potencia"));
+             a.setPrecision(resultado.getInt("Precision"));
+             a.setTipo("res/imagenes/tipos/" + resultado.getString("idTipo") + ".png");
+
+             ataques.add(a);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return ataques;
+
+    }
+
+
 }
+
+
 
 
 
