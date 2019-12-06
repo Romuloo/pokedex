@@ -1,3 +1,17 @@
+/**
+ Copyright [2019] [Andres Iturria Soler, Javier Linares Castrillon, Samuel Aragones Lozano]
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+
+ */
+
 package domain.mainPage;
 
 import static DAO.Conexion.getPokemons;
@@ -20,7 +34,13 @@ import domain.stats.Stats;
 
 /**
  *
- * @author andres
+ * @author Javier Linares Castrillon
+ * @author Andrés Iturria Soler
+ *
+ */
+
+/**
+ * Clase encargada de generar el panel de Pokemons. Panel principal.
  */
 public class ListaPokemons extends JPanel {
 
@@ -42,6 +62,10 @@ public class ListaPokemons extends JPanel {
     //private Font font = new Font("Calibri", Font.BOLD, 12);
 
 
+    /**
+     * Constructor de la clase ListaPokemons.
+     * @throws SQLException
+     */
     public ListaPokemons() throws SQLException {
         super();
         setLayout(null);
@@ -250,6 +274,11 @@ public class ListaPokemons extends JPanel {
 
 
     }
+
+    /**
+     * Se encarga de pintar la imagen de fondo del panel.
+     * @param grafico
+     */
     public void paint(Graphics grafico) {
         ImageIcon Img = new ImageIcon("res/imagenes/fondoPokedex.png");
         grafico.drawImage(Img.getImage(), 150, 0,(1500/3)*2-50, (1061/3)*2, null);
@@ -259,7 +288,9 @@ public class ListaPokemons extends JPanel {
     }
 
 
-
+    /**
+     * Esta clase privada actúa como Observer.
+     */
     private class Oyente implements ListSelectionListener {
 
         @Override
@@ -327,6 +358,11 @@ public class ListaPokemons extends JPanel {
 
             }
         }
+
+        /**
+         *
+         * @return nombre del pokemon seleccionado en la lista.
+         */
             public String getPokemon(){
                 return pokemons[list.getSelectedIndex()].getName();
 

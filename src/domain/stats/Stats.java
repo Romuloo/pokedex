@@ -20,11 +20,16 @@ import java.awt.Color;
 import java.awt.Graphics;
 import javax.swing.*;
 import java.awt.*;
-import java.sql.Connection;
 
 /**
  *
  * @author Javier Linares Castrillon
+ * @author Andrés Iturria Soler
+ *
+ */
+
+/**
+ * Clase encargada de generar un frame con las Stats del Pokemon consultado.
  */
 public class Stats extends JPanel {
 
@@ -49,6 +54,18 @@ public class Stats extends JPanel {
     private int defensaEsp;
     private int velocidad;
 
+    /**
+     * Constructor de la clase Stats.
+     *
+     * @param path
+     * @param nombre
+     * @param ps
+     * @param ataque
+     * @param defensa
+     * @param ataqueEsp
+     * @param defensaEsp
+     * @param velocidad
+     */
     public Stats(String path, String nombre, int ps, int ataque, int defensa, int ataqueEsp, int defensaEsp, int velocidad ){
 
         this.path = path;
@@ -66,7 +83,10 @@ public class Stats extends JPanel {
     }
 
 
-
+    /**
+     * Dibuja el nombre, la imagen y el gráfico del Pokemon.
+     * @param g
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -79,6 +99,7 @@ public class Stats extends JPanel {
 
     //En vez de Singleton puesto que cada Frame tiene unas caracteristicas especiales.
     //Con Singleton llegaba a unos bugs muy graciosos. Se creaba un frame con los datos anteriores.
+
     private synchronized static void frameManager(){
         if(frame == null) frame = new JFrame();
         else if(frame != null) frameManagerAux();
@@ -90,6 +111,10 @@ public class Stats extends JPanel {
     }
 
 
+    /**
+     * Crea un frame para la clase Stats con los datos de un Pokemon de nombre n.
+     * @param n
+     */
     public static void start(String n) {
 
 
@@ -108,61 +133,4 @@ public class Stats extends JPanel {
         frame.setResizable(false);
 
     }
-
-    public int getPs() {
-        return ps;
-    }
-
-    public void setPs(int ps) {
-        this.ps = ps;
-    }
-
-    public int getAtaque() {
-        return ataque;
-    }
-
-    public void setAtaque(int ataque) {
-        this.ataque = ataque;
-    }
-
-    public int getDefensa() {
-        return defensa;
-    }
-
-    public void setDefensa(int defensa) {
-        this.defensa = defensa;
-    }
-
-    public int getAtaqueEsp() {
-        return ataqueEsp;
-    }
-
-    public void setAtaqueEsp(int ataqueEsp) {
-        this.ataqueEsp = ataqueEsp;
-    }
-
-    public int getDefensaEsp() {
-        return defensaEsp;
-    }
-
-    public void setDefensaEsp(int defensaEsp) {
-        this.defensaEsp = defensaEsp;
-    }
-
-    public int getVelocidad() {
-        return velocidad;
-    }
-
-    public void setVelocidad(int velocidad) {
-        this.velocidad = velocidad;
-    }
-
-    public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
-    }
-
 }

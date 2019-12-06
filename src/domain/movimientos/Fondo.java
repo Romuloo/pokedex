@@ -20,6 +20,12 @@ import java.awt.*;
 /**
  *
  * @author Javier Linares Castrillon
+ * @author Andrés Iturria Soler
+ *
+ */
+
+/**
+ * Clase encargada de generar un panel customizado con una imagen de fondo.
  */
 public class Fondo extends JPanel {
 

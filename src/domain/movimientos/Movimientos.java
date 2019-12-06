@@ -1,15 +1,36 @@
+/**
+ Copyright [2019] [Andres Iturria Soler, Javier Linares Castrillon, Samuel Aragones Lozano]
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+
+ */
 package domain.movimientos;
 
 import DAO.Conexion;
-import domain.stats.Pokemon;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.util.ArrayList;
 
+/**
+ *
+ * @author Javier Linares Castrillon
+ * @author Andrés Iturria Soler
+ *
+ */
+
+/**
+ * Clase encargada de generar el panel de los Movimientos.
+ */
 public class Movimientos extends JPanel {
 
     private DefaultListModel modelo = new DefaultListModel();
@@ -61,15 +82,9 @@ public class Movimientos extends JPanel {
         f.setLayout(null);
         f.setBounds(150,0,(1500/3)*2, (1061/3)*2);
 
-
-
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         list.addListSelectionListener(new Movimientos.Oyente());
         list.setForeground(Color.white);
-
-
-
-
 
         int indice=0;
         fieldNombre= new JTextField(ataques().get(indice).getNombre());
@@ -191,8 +206,10 @@ public class Movimientos extends JPanel {
 
     }
 
-
-private class Oyente implements ListSelectionListener {
+    /**
+     * Esta clase actúa de Observer para la calse Movimiento.
+     */
+    private class Oyente implements ListSelectionListener {
 
     @Override
     public void valueChanged(ListSelectionEvent e){

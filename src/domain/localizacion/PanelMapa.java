@@ -15,7 +15,6 @@
 package domain.localizacion;
 
 import DAO.Conexion;
-import domain.stats.Stats;
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,6 +25,12 @@ import java.util.ArrayList;
 /**
  *
  * @author Javier Linares Castrillon
+ * @author Andrés Iturria Soler
+ *
+ */
+
+/**
+ * Clase encargada de general el Panel de las Localizaciones.
  */
 
 public class PanelMapa  extends JPanel{
@@ -35,9 +40,12 @@ public class PanelMapa  extends JPanel{
     private JScrollPane s = new JScrollPane(list);
 
     private Imagen i = new Imagen();
+    private ImageIcon in = new ImageIcon("res/imagenes/icon.png");
+    private ImageIcon help = new ImageIcon("res/imagenes/help.png");
 
     private int indexLocalizacion;
 
+    private String[] localizaciones = {"Calle Victoria", "Bosque Verde", "Monte Moon", "Cueva Celeste", "Torre Pokemon", "Zona Safari", "Islas Espuma"};
 
 
     private ArrayList<String> pokemons() {
@@ -75,11 +83,14 @@ public class PanelMapa  extends JPanel{
     //Panel Imagen
     private void initImagen(){
 
+        ImageIcon aux = new ImageIcon("res/imagenes/icon.png");
+        Icon ayuda = new ImageIcon(aux.getImage().getScaledInstance(512/10, 512/10, Image.SCALE_DEFAULT));
+
+
         i.setLayout(null);
         i.setBounds(100,0, (1500/3)*2, (1061/3)*2);
 
         //Image icon
-        ImageIcon in = new ImageIcon("res/imagenes/icon.png");
         add(i, BorderLayout.CENTER);
 
         //Botones
@@ -90,6 +101,8 @@ public class PanelMapa  extends JPanel{
         JButton b5 = new JButton();
         JButton b6 = new JButton();
         JButton b7 = new JButton();
+        JButton b8 = new JButton();
+
 
         i.add(b1);
         i.add(b2);
@@ -98,6 +111,7 @@ public class PanelMapa  extends JPanel{
         i.add(b5);
         i.add(b6);
         i.add(b7);
+        i.add(b8);
 
         b1.setBounds(109,207, 30,30);
         b2.setBounds(430,68, 30,30);
@@ -106,7 +120,7 @@ public class PanelMapa  extends JPanel{
         b5.setBounds(374,635, 30,30);
         b6.setBounds(487,415, 30,30);
         b7.setBounds(219,190, 30,30);
-
+        b8.setBounds(30,30,45,45);
 
         b1.setIcon(new ImageIcon(in.getImage().getScaledInstance(b1.getWidth(), b1.getHeight(), Image.SCALE_SMOOTH)));
         b1.setOpaque(true);
@@ -150,6 +164,15 @@ public class PanelMapa  extends JPanel{
         b7.setBorderPainted(false);
         b7.setBorder(null);
 
+        b8.setIcon(new ImageIcon(help.getImage().getScaledInstance(b8.getWidth(), b8.getHeight(), Image.SCALE_SMOOTH)));
+        b8.setOpaque(true);
+        b8.setContentAreaFilled(false);
+        b8.setBorderPainted(false);
+        b8.setBorder(null);
+
+
+
+
 
         b1.addActionListener(new ActionListener() {
             @Override
@@ -183,7 +206,27 @@ public class PanelMapa  extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 setModelo(2);
+
             }
+        });
+        b8.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Object o = JOptionPane.showInputDialog(b8, "Elige la Localización", "Localizaciones" ,JOptionPane.QUESTION_MESSAGE,
+                        ayuda, localizaciones, localizaciones[0]);
+
+                if(o.toString().equalsIgnoreCase("Calle Victoria")) setModelo(1);
+                if(o.toString().equalsIgnoreCase("Bosque Verde")) setModelo(2);
+                if(o.toString().equalsIgnoreCase("Monte Moon")) setModelo(3);
+                if(o.toString().equalsIgnoreCase("Cueva Celeste")) setModelo(4);
+                if(o.toString().equalsIgnoreCase("Torre Pokemon")) setModelo(5);
+                if(o.toString().equalsIgnoreCase("Zona Safari")) setModelo(6);
+                if(o.toString().equalsIgnoreCase("Islas Espuma")) setModelo(7);
+
+
+
+            }
+
         });
 
 
@@ -191,7 +234,7 @@ public class PanelMapa  extends JPanel{
 
 
     /**
-     * Construye un PanelMapa
+     * Construye un PanelMapa.
      */
 
     public PanelMapa(){

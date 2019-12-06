@@ -22,10 +22,18 @@ import java.util.List;
 /**
  *
  * @author Javier Linares Castrillon
+ * @author Andrés Iturria Soler
+ *
+ */
+
+/**
+ * Clase encargada de definir el modelo para la clase Bargraph.
  */
 public class BarGraphModel {
 
-
+    /**
+     * Esta nested class define un BarItem.
+     */
     public static class BarItem {
         public int percentage;
         public int width;
@@ -44,35 +52,69 @@ public class BarGraphModel {
     protected Dimension size = new Dimension();
     protected int horizontalGap = DEFAULT_ITEM_WIDTH * 2;
 
+    /**
+     * Constructor de BargraphModel, según Mariano, el abogado de oficio.
+     */
     public BarGraphModel() {
 
     }
 
+    /**
+     *
+     * @return el espacio entre barras.
+     */
     public int getHorizontalGap() {
         return horizontalGap;
     }
 
+    /**
+     *
+     * @return size definido por la clase Dimension.
+     */
     public Dimension getSize() {
         return size;
     }
+
+    /**
+     * Establece el size.
+     * @param width
+     * @param height
+     */
     public void setSize(int width, int height) {
         size.width = width;
         size.height = height;
     }
 
+    /**
+     * Establece la localización.
+     * @param x
+     * @param y
+     */
     public void setLocation(int x, int y) {
         this.location.x = x;
         this.location.y = y;
     }
 
+    /**
+     *
+     * @return la localización en x.
+     */
     public int getX() {
         return location.x;
     }
 
+    /**
+     *
+     * @return la localización en y.
+     */
     public int getY() {
         return location.y;
     }
 
+    /**
+     * Annade un BarItem.
+     * @param item
+     */
     public void addItem(BarItem item) {
         item.width = item.width == 0 ? DEFAULT_ITEM_WIDTH : item.width;
         items.add(item);

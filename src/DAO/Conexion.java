@@ -19,11 +19,16 @@ import java.util.ArrayList;
 
 import domain.movimientos.Ataque;
 import domain.stats.Pokemon;
-import domain.stats.Stats;
 
 /**
  *
- * @author Javier Linares y Andrés Iturria.
+ * @author Javier Linares Castrillon
+ * @author Andrés Iturria Soler
+ *
+ */
+
+/**
+ * Clase encargada de establecer conexión con la base de datos y realizar consultas.
  */
 public class Conexion {
     private static Connection con = null;
@@ -203,6 +208,11 @@ public class Conexion {
 
     }
 
+    /**
+     *
+     * @return un arrayList de la clase Pokemon con todos los pokemons.
+     * @throws SQLException
+     */
     public static Pokemon[] getPokemons() throws SQLException{
         ResultSet result1=stmt.executeQuery("SELECT * FROM pokemon ORDER BY idpokemon");
         Pokemon[] pokemons = new Pokemon[200];
@@ -235,6 +245,10 @@ public class Conexion {
         return pokemons;
     }
 
+    /**
+     *
+     * @return un arrayList de la clase Ataque con todos los movimientos.
+     */
     public static ArrayList<Ataque> getAtaques() {
 
         ArrayList<Ataque> ataques = new ArrayList<>();

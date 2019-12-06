@@ -8,9 +8,14 @@ import java.util.ArrayList;
 
 /**
  *
- * @author andre
+ * @author Javier Linares Castrillon
+ * @author Andrés Iturria Soler
+ *
  */
 
+/**
+ * Clase encargada de definir un Pokemon. Utilizada para almacenar consultas.
+ */
 public class Pokemon {
     private int id;
     private String path, name, categoria;

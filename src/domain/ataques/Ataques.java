@@ -22,8 +22,13 @@ import java.util.ArrayList;
 /**
  *
  * @author Javier Linares Castrillon
+ * @author Andrés Iturria Soler
+ *
  */
 
+/**
+ * Clase encargada de general el frame con los ataques y la imagen de un Pokemon de nombre n.
+ */
 public class Ataques extends JPanel {
 
 
@@ -102,7 +107,10 @@ public class Ataques extends JPanel {
 
     }
 
-
+    /**
+     *  Genera un frame con los ataques del pokemon seleccionado.
+     * @param name nombre del pokemon elegido.
+     */
     public static void ataques(String name) {
 
 

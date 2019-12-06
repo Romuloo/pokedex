@@ -21,13 +21,24 @@ import java.awt.*;
  *
  * @author Javier Linares Castrillon
  */
+
+/**
+ * Clase encargada de general un panel customizado con una imagen de fondo.
+ */
 public class Imagen extends JPanel {
 
+    /**
+     * Constructor de la clase Imagen.
+     */
     public Imagen() {
         this.setSize((1500/3)*2, (1061/3)*2);
 
     }
 
+    /**
+     * Pinta la imagen seleccionada en el panel.
+     * @param grafico
+     */
     public void paint(Graphics grafico) {
         Dimension height = getSize();
         ImageIcon Img = new ImageIcon("res/imagenes/kanto.png");

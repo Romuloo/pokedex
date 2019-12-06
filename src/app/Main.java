@@ -17,8 +17,6 @@ import DAO.Conexion;
 import domain.localizacion.*;
 import domain.mainPage.ListaPokemons;
 import domain.movimientos.Movimientos;
-import domain.mainPage.ListaPokemons;
-import domain.stats.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -29,8 +27,20 @@ import java.util.logging.Logger;
 /**
  *
  * @author Javier Linares Castrillon
+ * @author Andrés Iturria Soler
+ * @author Samuel Aragonés Lozano
+ *
+ */
+
+/**
+ * Clase principal donde se inicializa el main Frame y se ejecuta el programa.
  */
 public class Main {
+
+    /**
+     *
+     * Método Main desde donde se ejecuta la app.
+     */
     public static void main(String[] args){
 
         try {
@@ -54,6 +64,7 @@ public class Main {
             f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             f.setVisible(true);
             f.setResizable(false);
+
         } catch (SQLException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -21,7 +21,14 @@ import java.awt.Graphics;
 /**
  *
  * @author Javier Linares Castrillon
+ * @author Andrés Iturria Soler
+ *
  */
+
+/**
+ * Clase encargada de definir un Bargraph, utilizado por la clase Stats.
+ */
+
 public class BarGraph {
 
     protected BarGraphModel model;
@@ -82,15 +89,19 @@ public class BarGraph {
         return stat * 100 / 700;
     }
 
+    /**
+     *
+     * @return una instancai de BarGraphModel.
+     */
     public BarGraphModel getModel() {
         return model;
     }
-    public BarGraphModel getModelPhoto(){
-        return modelPhoto;
-    }
 
 
-
+    /**
+     * Dibuja los items.
+     * @param g
+     */
     public void draw(Graphics g) {
         drawItems(g);
         drawBoarder(g);
