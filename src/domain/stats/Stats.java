@@ -73,7 +73,7 @@ public class Stats extends JPanel {
         graph.draw(g);
         g.drawImage(image.getImage(),40 ,50,400,400,null);
         g.setFont(f);
-        g.drawString(thisname, 180, 30);
+        g.drawString("Stats de " + thisname, 110, 30);
 
     }
 

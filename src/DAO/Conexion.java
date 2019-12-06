@@ -235,6 +235,30 @@ public class Conexion {
         return pokemons;
     }
 
+    public static ArrayList<Ataque> getAtaques() {
+
+        ArrayList<Ataque> ataques = new ArrayList<>();
+        try {
+            ResultSet result1 = stmt.executeQuery("SELECT * FROM movimiento ORDER BY idMovimiento");
+
+
+            while (result1.next()) {
+
+                Ataque a = new Ataque();
+                a.setNombre(result1.getString("Nombre"));
+                a.setPp(result1.getInt("PP"));
+                a.setPotencia(result1.getInt("Potencia"));
+                a.setPrecision(result1.getInt("Precision"));
+                a.setDescripcion(result1.getString("Descripcion"));
+                a.setTipo("res/imagenes/tipos/" + result1.getString("idTipo") + ".png");
+                ataques.add(a);
+            }
+
+        } catch (Exception e) {
+
+        }
+        return ataques;
+    }
 
 }
 

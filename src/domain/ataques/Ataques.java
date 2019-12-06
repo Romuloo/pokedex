@@ -64,7 +64,7 @@ public class Ataques extends JPanel {
         g.drawImage(image.getImage(),40 ,50,400,400,null);
         g.setFont(f);
         g.setColor(Color.darkGray);
-        g.drawString(pokeName, 180, 30);
+        g.drawString("Ataques de " + pokeName, 90, 30);
 
     }
     private void addAtaques(){
