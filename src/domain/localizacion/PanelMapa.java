@@ -215,14 +215,18 @@ public class PanelMapa  extends JPanel{
                 Object o = JOptionPane.showInputDialog(b8, "Elige la Localización", "Localizaciones" ,JOptionPane.QUESTION_MESSAGE,
                         ayuda, localizaciones, localizaciones[0]);
 
-                if(o.toString().equalsIgnoreCase("Calle Victoria")) setModelo(1);
-                if(o.toString().equalsIgnoreCase("Bosque Verde")) setModelo(2);
-                if(o.toString().equalsIgnoreCase("Monte Moon")) setModelo(3);
-                if(o.toString().equalsIgnoreCase("Cueva Celeste")) setModelo(4);
-                if(o.toString().equalsIgnoreCase("Torre Pokemon")) setModelo(5);
-                if(o.toString().equalsIgnoreCase("Zona Safari")) setModelo(6);
-                if(o.toString().equalsIgnoreCase("Islas Espuma")) setModelo(7);
+                   try {
+                        if (o.toString().equalsIgnoreCase("Calle Victoria")) setModelo(1);
+                        if (o.toString().equalsIgnoreCase("Bosque Verde")) setModelo(2);
+                        if (o.toString().equalsIgnoreCase("Monte Moon")) setModelo(3);
+                        if (o.toString().equalsIgnoreCase("Cueva Celeste")) setModelo(4);
+                        if (o.toString().equalsIgnoreCase("Torre Pokemon")) setModelo(5);
+                        if (o.toString().equalsIgnoreCase("Zona Safari")) setModelo(6);
+                        if (o.toString().equalsIgnoreCase("Islas Espuma")) setModelo(7);
 
+                   }catch (NullPointerException ne){
+                       System.out.println("Le has dado a cancelar, no pasa nada, yo te recojo la excepción :)");
+                   }
 
 
             }
