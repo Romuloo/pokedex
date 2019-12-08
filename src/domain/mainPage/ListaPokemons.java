@@ -241,7 +241,6 @@ public class ListaPokemons extends JPanel {
         ImageIcon in = new ImageIcon("res/imagenes/iconoStats.png");
         ImageIcon ing = new ImageIcon("res/imagenes/iconAtaque.png");
 
-
         stats.setBounds(900, 200, 70, 70);
 
         stats.setIcon(new ImageIcon(in.getImage().getScaledInstance(stats.getWidth(), stats.getHeight(), Image.SCALE_SMOOTH)));

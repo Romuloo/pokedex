@@ -169,7 +169,7 @@ public class Conexion {
         ArrayList<String> ataques = new ArrayList<>();
 
         try {
-            ResultSet resultado = stmt.executeQuery("select m.nombre from pokemon p, movimiento m, pokemonMovimientoForma" +
+            ResultSet resultado = stmt.executeQuery("select DISTINCT m.nombre from pokemon p, movimiento m, pokemonMovimientoForma" +
                     " pm where p.idPokemon = pm.idPokemon and pm.idMovimiento = m.idMovimiento and p.nombre = \""+ n + "\"");
             while (resultado.next()) {
                 ataques.add(resultado.getString("Nombre"));
