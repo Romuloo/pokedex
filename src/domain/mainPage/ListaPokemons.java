@@ -27,6 +27,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 
+import DAO.Conexion;
 import domain.ataques.Ataques;
 import domain.stats.Pokemon;
 import domain.stats.Stats;
@@ -56,10 +57,14 @@ public class ListaPokemons extends JPanel {
     private Font fontFields = new Font("Calibri", Font.BOLD, 16);
     private Font font = new Font("Calibri", Font.BOLD, 16);
 
+    private Color x = new Color(13, 175, 207);
+
+
     private JButton stats = new JButton();
     private JButton ataques = new JButton();
 
     //private Font font = new Font("Calibri", Font.BOLD, 12);
+
 
 
     /**
@@ -84,7 +89,7 @@ public class ListaPokemons extends JPanel {
         list.addListSelectionListener(new Oyente());
         listScrollPane = new JScrollPane(list);
         add(listScrollPane);
-        list.setBackground(Color.cyan);
+        list.setBackground(Color.getColor("blue", x));
         listScrollPane.setBackground(Color.blue);
         listScrollPane.setBounds(0, 0, 150, (1061 / 3) * 2 - 20);
         //Fin de Lista
@@ -125,26 +130,26 @@ public class ListaPokemons extends JPanel {
         add(labelNombre);
         add(fieldNombre);
 
-        labelNombre.setBounds(275, 50, 150, 30);
-        fieldNombre.setBounds(260, 75, 100, 30);
+        labelNombre.setBounds(275, 50+50+30+20, 150, 30);
+        fieldNombre.setBounds(260, 75+50+30+20, 100, 30);
 
         add(labelCategoria);
         add(fieldCategoria);
 
-        labelCategoria.setBounds(270, 125, 150, 30);
-        fieldCategoria.setBounds(260, 150, 100, 30);
+        labelCategoria.setBounds(270, 125+50+30+20, 150, 30);
+        fieldCategoria.setBounds(260, 150+50+30+20, 100, 30);
 
         add(labelPeso);
         add(fieldPeso);
 
-        labelPeso.setBounds(285, 200, 100, 30);
-        fieldPeso.setBounds(255, 225, 100, 30);
+        labelPeso.setBounds(285, 200+50+30+20, 100, 30);
+        fieldPeso.setBounds(255, 225+50+30+20, 100, 30);
 
         add(labelAltura);
         add(fieldAltura);
 
-        labelAltura.setBounds(282, 275, 100, 30);
-        fieldAltura.setBounds(260, 300, 100, 30);
+        labelAltura.setBounds(282, 275+50+30+20, 100, 30);
+        fieldAltura.setBounds(260, 300+50+30+20, 100, 30);
 
         fieldNombre.setOpaque(false);
         fieldNombre.setBorder(null);
@@ -171,7 +176,7 @@ public class ListaPokemons extends JPanel {
         imagenPrueba = new ImageIcon(pokemons[indice].getPath());
         imageLabel = new JLabel(imagenPrueba);
         add(imageLabel);
-        imageLabel.setBounds(500, 25, 300, 300);
+        imageLabel.setBounds(500, 25+100, 300, 300);
 
 
         tituloTipo1 = new JLabel("Tipo 1");
@@ -185,20 +190,20 @@ public class ListaPokemons extends JPanel {
         tituloTipo2.setForeground(Color.darkGray);
 
 
-        tituloTipo1.setBounds(548, 300, 150, 50);
-        tituloTipo2.setBounds(698, 300, 150, 50);
+        tituloTipo1.setBounds(548, 300+60, 150, 50);
+        tituloTipo2.setBounds(698, 300+60, 150, 50);
 
 
         imageTipo1 = new ImageIcon("res/imagenes/tipos/" + Integer.toString(pokemons[indice].getTipo(0)) + ".png");
         fieldTipo1 = new JLabel(imageTipo1);
         add(fieldTipo1);
-        fieldTipo1.setBounds(500, 325, 150, 50);
+        fieldTipo1.setBounds(500, 325+60, 150, 50);
 
 
         imageTipo2 = new ImageIcon("res/imagenes/tipos/" + Integer.toString(pokemons[indice].getTipo(1)) + ".png");
         fieldTipo2 = new JLabel(imageTipo2);
         add(fieldTipo2);
-        fieldTipo2.setBounds(650, 325, 150, 50);
+        fieldTipo2.setBounds(650, 325+60, 150, 50);
         //Termina imagen Pokemon y tipos
 
 
@@ -260,9 +265,12 @@ public class ListaPokemons extends JPanel {
         stats.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Stats.start(new Oyente().getPokemon());
+                 Stats.start(new Oyente().getPokemon());
+
             }
         });
+
+
 
         ataques.addActionListener(new ActionListener() {
             @Override
@@ -273,6 +281,10 @@ public class ListaPokemons extends JPanel {
 
 
 
+
+    }
+    public void setIndexLista(int i){
+      list.setSelectedIndex(i);
     }
 
     /**
@@ -282,6 +294,10 @@ public class ListaPokemons extends JPanel {
     public void paint(Graphics grafico) {
         ImageIcon Img = new ImageIcon("res/imagenes/fondoPokedex.png");
         grafico.drawImage(Img.getImage(), 150, 0,(1500/3)*2-50, (1061/3)*2, null);
+
+
+        ImageIcon Imagen = new ImageIcon("res/imagenes/logo.png");
+        grafico.drawImage(Imagen.getImage(), 475, 30,1632/5,928/5, null);
         setOpaque(false);
         super.paint(grafico);
 
@@ -313,8 +329,8 @@ public class ListaPokemons extends JPanel {
                 fieldTipo2 = new JLabel(imageTipo2);
                 add(fieldTipo1);
                 add(fieldTipo2);
-                fieldTipo1.setBounds(500, 325, 150, 50);
-                fieldTipo2.setBounds(650, 325, 150, 50);
+                fieldTipo1.setBounds(500, 325+60, 150, 50);
+                fieldTipo2.setBounds(650, 325+60, 150, 50);
 
 
                 //Actualizacion de imagenes.
@@ -322,7 +338,7 @@ public class ListaPokemons extends JPanel {
                 imagenPrueba = new ImageIcon(pokemons[indice].getPath());
                 imageLabel = new JLabel(imagenPrueba);
                 add(imageLabel);
-                imageLabel.setBounds(500, 25, 300, 300);
+                imageLabel.setBounds(500, 25+100, 300, 300);
 
                 //Actualizacion imagenes evoluciones
                 remove(labelEvo1);
@@ -354,6 +370,7 @@ public class ListaPokemons extends JPanel {
                 labelEvo1.setBounds(100 + 150, 450, 200, 220);
                 labelEvo2.setBounds(400 + 150, 450, 200, 220);
                 labelEvo3.setBounds(700 + 150, 450, 200, 220);
+                
 
 
             }

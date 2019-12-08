@@ -45,14 +45,7 @@ public class Stats extends JPanel {
     private static String thisname;
     private static JFrame frame;
 
-    private String path;
-    private String nombre;
-    private int ps;
-    private int ataque;
-    private int defensa;
-    private int ataqueEsp;
-    private int defensaEsp;
-    private int velocidad;
+
 
     /**
      * Constructor de la clase Stats.
@@ -68,14 +61,7 @@ public class Stats extends JPanel {
      */
     public Stats(String path, String nombre, int ps, int ataque, int defensa, int ataqueEsp, int defensaEsp, int velocidad ){
 
-        this.path = path;
-        this.nombre = nombre;
-        this.ps = ps;
-        this.ataque = ataque;
-        this.defensa = defensa;
-        this.ataqueEsp = ataqueEsp;
-        this.defensaEsp = defensaEsp;
-        this.velocidad = velocidad;
+
 
         setBackground(new Color(27, 29, 77));
         this.graph = new BarGraph(ps,ataque,defensa,ataqueEsp,defensaEsp,velocidad);

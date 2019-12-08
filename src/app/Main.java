@@ -13,16 +13,7 @@
  */
 
 package app;
-import DAO.Conexion;
-import domain.localizacion.*;
-import domain.mainPage.ListaPokemons;
-import domain.movimientos.Movimientos;
-
-import javax.swing.*;
-import java.awt.*;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import app.before.Begin;
 
 /**
  *
@@ -33,7 +24,7 @@ import java.util.logging.Logger;
  */
 
 /**
- * Clase principal donde se inicializa el main Frame y se ejecuta el programa.
+ * Clase principal donde comienza el programa.
  */
 public class Main {
 
@@ -42,31 +33,6 @@ public class Main {
      * Método Main desde donde se ejecuta la app.
      */
     public static void main(String[] args){
-
-        try {
-            Conexion.conectar();
-            JTabbedPane jt = new JTabbedPane();
-            PanelMapa p = new PanelMapa();
-            ListaPokemons l = new ListaPokemons();
-            JFrame f = new JFrame();
-            Movimientos m = new Movimientos();
-
-
-            jt.add(l, "Pokemons");
-            jt.add(m, "Movimientos");
-            jt.add(p, "Localizaciones");
-
-
-            f.add(jt);
-            jt.setBackground(Color.black);
-            f.setTitle("Pokedex");
-            f.setSize(((1500/3)*2)+100,(1061/3)*2+50);
-            f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            f.setVisible(true);
-            f.setResizable(false);
-
-        } catch (SQLException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            Begin.init();
     }
 }

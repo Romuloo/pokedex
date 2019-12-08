@@ -19,6 +19,7 @@ import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
+
 import java.util.ArrayList;
 
 /**
@@ -39,7 +40,7 @@ public class Movimientos extends JPanel {
     private Fondo f = new Fondo();
     private Font font = new Font("Calibri", Font.BOLD, 20);
     private Font fontFields = new Font("Calibri", Font.BOLD, 20);
-    private Font fontTitulo = new Font("Calibri", Font.BOLD, 36);
+    private Font fontAux = new Font("Calibri", Font.BOLD, 10);
     private Font fontFieldsDesc = new Font("Calibri", Font.BOLD, 15);
 
 
@@ -49,7 +50,6 @@ public class Movimientos extends JPanel {
     private JLabel l4 = new JLabel("Precisión:");
     private JLabel l5 = new JLabel("Tipo:");
     private JLabel l6 = new JLabel("Descripción:");
-    private JLabel l8 = new JLabel("Movimientos");
 
     private JTextField fieldNombre, fieldPP, fieldPot, fieldPre, fieldDesc;
     private ImageIcon tipo = new ImageIcon("res/imagenes/tipos/9.png");
@@ -58,6 +58,8 @@ public class Movimientos extends JPanel {
 
     private ArrayList<Ataque> ataques = new ArrayList<>();
 
+    private Color x = new Color(13, 175, 207);
+    private Color y = new Color(127, 28, 23, 253);
 
 
 
@@ -71,8 +73,8 @@ public class Movimientos extends JPanel {
 
     private void initList(){
         setModelo();
-        list.setBackground(Color.darkGray);
-        s.setBackground(Color.red);
+        list.setBackground(Color.getColor("blue", x));
+        s.setBackground(Color.blue);
         s.setBounds(0,0,150,(1061/3)*2-10);
         add(s, BorderLayout.WEST);
 
@@ -84,7 +86,7 @@ public class Movimientos extends JPanel {
 
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         list.addListSelectionListener(new Movimientos.Oyente());
-        list.setForeground(Color.white);
+        list.setForeground(Color.black);
 
         int indice=0;
         fieldNombre= new JTextField(ataques().get(indice).getNombre());
@@ -124,7 +126,6 @@ public class Movimientos extends JPanel {
         l4.setFont(font);
         l5.setFont(font);
         l6.setFont(font);
-        l8.setFont(fontTitulo);
 
         f.add(l1);
         f.add(l2);
@@ -133,16 +134,14 @@ public class Movimientos extends JPanel {
         f.add(l5);
         f.add(l6);
         f.add(l7);
-        f.add(l8);
 
-        l1.setBounds(75,50+100+100, 150,40);
-        l2.setBounds(75,100+100+100,105*3,40);
-        l3.setBounds(75+400,150+100,60*3,40);
-        l4.setBounds(75+400,200+100,60*3,40);
-        l5.setBounds(75,250+100,80*3,40);
-        l6.setBounds(40,450,80*3,40);
-        l7.setBounds(270,250+100,60,40);
-        l8.setBounds((1061/3)-50, 40, 400,90);
+        l1.setBounds(75,50+100+100-60, 150,40);
+        l2.setBounds(75,100+100+100-60,105*3,40);
+        l3.setBounds(75+400,150+100-60,60*3,40);
+        l4.setBounds(75+400,200+100-60,60*3,40);
+        l5.setBounds(75,250+100-60,80*3,40);
+        l6.setBounds(40,450-100,80*3,40);
+        l7.setBounds(270,250+100-60,60,40);
 
         f.add(fieldNombre);
         f.add(fieldPP);
@@ -151,22 +150,22 @@ public class Movimientos extends JPanel {
         f.add(fieldDesc);
 
 
-        fieldNombre.setBounds(270,50+100+100,175,40);
-        fieldPP.setBounds(270,100+100+100,100,40);
-        fieldPot.setBounds(270+400,150+100,100,40);
-        fieldPre.setBounds(270+400,200+100,100,40);
 
-        fieldDesc.setBounds(40,480,930,40);
+        fieldNombre.setBounds(270,50+100+100-60,175+30,40);
+        fieldPP.setBounds(270,100+100+100-60,100,40);
+        fieldPot.setBounds(270+400,150+100-60,100,40);
+        fieldPre.setBounds(270+400,200+100-60,100,40);
+
+        fieldDesc.setBounds(40,480-60,900,40);
 
 
 
-        l1.setForeground(Color.lightGray);
-        l2.setForeground(Color.lightGray);
-        l3.setForeground(Color.lightGray);
-        l4.setForeground(Color.lightGray);
-        l5.setForeground(Color.lightGray);
-        l6.setForeground(Color.lightGray);
-        l8.setForeground(Color.lightGray);
+        l1.setForeground(Color.getColor("red", y));
+        l2.setForeground(Color.getColor("red", y));
+        l3.setForeground(Color.getColor("red", y));
+        l4.setForeground(Color.getColor("red", y));
+        l5.setForeground(Color.getColor("red", y));
+        l6.setForeground(Color.getColor("red", y));
 
 
         f.add(l1);
@@ -178,12 +177,17 @@ public class Movimientos extends JPanel {
 
 
 
-       // f.add(l2);
+
+
 
 
 
         add(f, BorderLayout.CENTER);
     }
+
+
+
+
 
     private void addAtaques(){
 
@@ -206,6 +210,7 @@ public class Movimientos extends JPanel {
 
     }
 
+
     /**
      * Esta clase actúa de Observer para la calse Movimiento.
      */
@@ -220,13 +225,21 @@ public class Movimientos extends JPanel {
             fieldPP.setText((Integer.toString(ataques().get(indice).getPp())));
             fieldPot.setText(Integer.toString(ataques().get(indice).getPotencia()));
             fieldPre.setText(Integer.toString(ataques().get(indice).getPrecision()));
-            fieldDesc.setText(ataques().get(indice).getDescripcion());
+
+            if(ataques().get(indice).getDescripcion().length() > 150) {
+                fieldDesc.setFont(fontAux);
+                fieldDesc.setText(ataques().get(indice).getDescripcion());
+            }
+            else{
+                fieldDesc.setFont(fontFieldsDesc);
+                fieldDesc.setText(ataques().get(indice).getDescripcion());
+            }
 
             f.remove(l7);
             tipo = new ImageIcon(ataques().get(indice).getTipo());
             l7 = new JLabel(tipo);
             f.add(l7);
-            l7.setBounds(270,250+100,60,40);
+            l7.setBounds(270,250+100-60,60,40);
 
 
             }

@@ -36,11 +36,21 @@ public class Fondo extends JPanel {
 
     public void paint(Graphics grafico) {
         Dimension height = getSize();
-        ImageIcon Img = new ImageIcon("res/imagenes/fondo.png");
+        ImageIcon Img = new ImageIcon("res/imagenes/esteFondo.png");
         grafico.drawImage(Img.getImage(), 0, 0, height.width, height.height, null);
+
+        ImageIcon movs = new ImageIcon("res/imagenes/movs.png");
+        grafico.drawImage(movs.getImage(), (1061/3)-50-60, 40-10, 400,90, null);
+
+        ImageIcon Imge = new ImageIcon("res/imagenes/rotom.png");
+        grafico.drawImage(Imge.getImage(), 650, 370, 1254 / 4, 1254 / 4, null);
+
         setOpaque(false);
         super.paint(grafico);
 
+
     }
+
+
 }
 

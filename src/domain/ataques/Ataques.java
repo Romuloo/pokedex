@@ -45,7 +45,7 @@ public class Ataques extends JPanel {
 
    // private ImageIcon image = new ImageIcon(thisPath);
     private Font f = new Font("Calibri", Font.BOLD, 26);
-
+    private Color c = new Color(65, 207, 202);
 
 
     //Provisional
@@ -58,8 +58,9 @@ public class Ataques extends JPanel {
         thisPath = p.getPath();
         pokeName = p.getName();
         setLayout(null);
-        setBackground(new Color(146, 207, 138));
+        setBackground(new Color(39, 156, 207));
         initList();
+
     }
 
     @Override
@@ -89,7 +90,7 @@ public class Ataques extends JPanel {
 
     private void initList(){
         setModelo();
-        list.setBackground(Color.pink);
+        list.setBackground(Color.getColor("Blue", c));
         s.setBackground(Color.green);
         s.setBounds(5,460,470,310);
         add(s);

@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package domain.stats;
+import DAO.Conexion;
+
 import java.util.ArrayList;
 
 /**
@@ -27,25 +29,13 @@ public class Pokemon {
     private int ate;
     private int defe;
     private int vel;
+
     private ArrayList<Integer> tipo = new ArrayList<>();
     private ArrayList<Integer> lineaEvo=new ArrayList<>();
 
 
+
     public Pokemon(){
-    }
-    public Pokemon(int id, String path, String name, String categoria, double peso, double altura, int ps, int at, int def, int ate, int defe, int vel) {
-        this.id = id;
-        this.path = path;
-        this.name = name;
-        this.categoria = categoria;
-        this.peso = peso;
-        this.altura = altura;
-        this.ps = ps;
-        this.at = at;
-        this.def = def;
-        this.ate = ate;
-        this.defe = defe;
-        this.vel = vel;
     }
 
     public void setId(int id){
@@ -149,6 +139,7 @@ public class Pokemon {
     public int getVel() {
         return vel;
     }
+
     public Integer getTipo(int indice){
         if(this.tipo.size()-1 < indice){
             return 0;
@@ -160,8 +151,11 @@ public class Pokemon {
     public void setLineaEvo(int x){
         this.lineaEvo.add(x);
     }
-    public ArrayList getLineaEvo(){
+    public ArrayList getLineaEvo() {
         return this.lineaEvo;
     }
+
+
+
 
 }

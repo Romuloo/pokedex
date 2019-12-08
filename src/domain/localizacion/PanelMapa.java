@@ -44,6 +44,8 @@ public class PanelMapa  extends JPanel{
     private ImageIcon help = new ImageIcon("res/imagenes/help.png");
 
     private int indexLocalizacion;
+    private Color x = new Color(13, 175, 207);
+
 
     private String[] localizaciones = {"Calle Victoria", "Bosque Verde", "Monte Moon", "Cueva Celeste", "Torre Pokemon", "Zona Safari", "Islas Espuma"};
 
@@ -73,8 +75,8 @@ public class PanelMapa  extends JPanel{
 
     //JList
     private void initList(){
-        list.setBackground(Color.cyan);
-        s.setBackground(Color.red);
+        list.setBackground(Color.getColor("blue", x));
+        s.setBackground(Color.blue);
         s.setBounds(0,0,100,(1061/3)*2);
         add(s, BorderLayout.WEST);
 
@@ -169,8 +171,6 @@ public class PanelMapa  extends JPanel{
         b8.setContentAreaFilled(false);
         b8.setBorderPainted(false);
         b8.setBorder(null);
-
-
 
 
 
