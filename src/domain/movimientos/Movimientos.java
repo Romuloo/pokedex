@@ -57,11 +57,14 @@ public class Movimientos extends JPanel {
     private JLabel l7 = new JLabel(tipo);
 
     private ArrayList<Ataque> ataques = new ArrayList<>();
+    private ArrayList<Maquina> maquinas = new ArrayList<>();
 
     private Color x = new Color(13, 175, 207);
     private Color y = new Color(127, 28, 23, 253);
+    private Color z = new Color(30, 28, 127, 253);
 
 
+    private JTextField fieldMaquina;
 
 
     private ArrayList<Ataque> ataques(){
@@ -71,11 +74,17 @@ public class Movimientos extends JPanel {
              return ataques;
     }
 
+    private ArrayList<Maquina> maquinas(){
+        if(maquinas.isEmpty()) for(int i = 0; i < Conexion.maquinas().size(); i++)
+            maquinas.add(Conexion.maquinas().get(i));
+        return maquinas;
+    }
+
     private void initList(){
         setModelo();
         list.setBackground(Color.getColor("blue", x));
         s.setBackground(Color.blue);
-        s.setBounds(0,0,150,(1061/3)*2-10);
+        s.setBounds(0,0,150,(1061/3)*2-20);
         add(s, BorderLayout.WEST);
 
     }
@@ -83,6 +92,7 @@ public class Movimientos extends JPanel {
     private void initFondo(){
         f.setLayout(null);
         f.setBounds(150,0,(1500/3)*2, (1061/3)*2);
+
 
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         list.addListSelectionListener(new Movimientos.Oyente());
@@ -94,6 +104,19 @@ public class Movimientos extends JPanel {
         fieldPot = new JTextField(Integer.toString(ataques().get(indice).getPotencia()));
         fieldPre = new JTextField(Integer.toString(ataques().get(indice).getPrecision()));
         fieldDesc = new JTextField(ataques().get(indice).getDescripcion());
+
+        fieldMaquina = new JTextField(" ");
+
+
+        Maquina m = new Maquina();
+        m.setNombreAtaque(ataques().get(indice).getNombre());
+
+        if(maquinas().contains(m)){
+            if(fieldMaquina != null) f.remove(fieldMaquina);
+            String nombre = maquinas().get(maquinas().indexOf(m)).getNombre();
+            fieldMaquina.setText(nombre);
+        }
+
 
         fieldNombre.setOpaque(false);
         fieldNombre.setBorder(null);
@@ -119,6 +142,12 @@ public class Movimientos extends JPanel {
         fieldDesc.setBorder(null);
         fieldDesc.setFont(fontFieldsDesc);
         fieldDesc.setForeground(Color.WHITE);
+
+        fieldMaquina.setOpaque(false);
+        fieldMaquina.setBorder(null);
+        fieldMaquina.setFont(fontFields);
+        fieldMaquina.setForeground(Color.WHITE);
+
 
         l1.setFont(font);
         l2.setFont(font);
@@ -148,7 +177,7 @@ public class Movimientos extends JPanel {
         f.add(fieldPot);
         f.add(fieldPre);
         f.add(fieldDesc);
-
+        f.add(fieldMaquina);
 
 
         fieldNombre.setBounds(270,50+100+100-60,175+30,40);
@@ -157,6 +186,7 @@ public class Movimientos extends JPanel {
         fieldPre.setBounds(270+400,200+100-60,100,40);
 
         fieldDesc.setBounds(40,480-60,900,40);
+        fieldMaquina.setBounds(270 + 70, 250 + 100 - 60, 60, 40);
 
 
 
@@ -220,11 +250,15 @@ public class Movimientos extends JPanel {
     public void valueChanged(ListSelectionEvent e){
         if (!e.getValueIsAdjusting()){
             //Actualizacion de campos de texto
+
+
             int indice=list.getSelectedIndex();
             fieldNombre.setText(ataques().get(indice).getNombre());
             fieldPP.setText((Integer.toString(ataques().get(indice).getPp())));
             fieldPot.setText(Integer.toString(ataques().get(indice).getPotencia()));
             fieldPre.setText(Integer.toString(ataques().get(indice).getPrecision()));
+
+            fieldMaquina.setText(" ");
 
             if(ataques().get(indice).getDescripcion().length() > 150) {
                 fieldDesc.setFont(fontAux);
@@ -234,6 +268,18 @@ public class Movimientos extends JPanel {
                 fieldDesc.setFont(fontFieldsDesc);
                 fieldDesc.setText(ataques().get(indice).getDescripcion());
             }
+
+            Maquina m = new Maquina();
+            m.setNombreAtaque(ataques().get(indice).getNombre());
+
+            if(maquinas().contains(m)){
+                if(fieldMaquina != null) f.remove(fieldMaquina);
+                String nombre = maquinas().get(maquinas().indexOf(m)).getNombre();
+                fieldMaquina.setText(nombre);
+                f.add(fieldMaquina);
+            }
+
+
 
             f.remove(l7);
             tipo = new ImageIcon(ataques().get(indice).getTipo());

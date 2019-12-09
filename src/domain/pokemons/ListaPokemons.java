@@ -12,7 +12,7 @@
 
  */
 
-package domain.mainPage;
+package domain.pokemons;
 
 import static DAO.Conexion.getPokemons;
 
@@ -27,7 +27,6 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 
-import DAO.Conexion;
 import domain.ataques.Ataques;
 import domain.stats.Pokemon;
 import domain.stats.Stats;
@@ -59,6 +58,8 @@ public class ListaPokemons extends JPanel {
 
     private Color x = new Color(13, 175, 207);
 
+    private ImageIcon in = new ImageIcon("res/imagenes/iconoStats.png");
+    private ImageIcon ing = new ImageIcon("res/imagenes/iconAtaque.png");
 
     private JButton stats = new JButton();
     private JButton ataques = new JButton();
@@ -238,8 +239,7 @@ public class ListaPokemons extends JPanel {
         flecha2.setBounds(625 + 150, 525, 50, 50);
         //Termina evoluciones
 
-        ImageIcon in = new ImageIcon("res/imagenes/iconoStats.png");
-        ImageIcon ing = new ImageIcon("res/imagenes/iconAtaque.png");
+
 
         stats.setBounds(900, 200, 70, 70);
 

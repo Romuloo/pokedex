@@ -54,6 +54,8 @@ public class PanelMapa  extends JPanel{
         return Conexion.pokemonLocalizaciones(indexLocalizacion);
     }
 
+    private ImageIcon aux = new ImageIcon("res/imagenes/icon.png");
+    private Icon ayuda = new ImageIcon(aux.getImage().getScaledInstance(512/10, 512/10, Image.SCALE_DEFAULT));
 
     //annade pokemons al modelo de la JList
     private void addPokemons(){
@@ -85,8 +87,7 @@ public class PanelMapa  extends JPanel{
     //Panel Imagen
     private void initImagen(){
 
-        ImageIcon aux = new ImageIcon("res/imagenes/icon.png");
-        Icon ayuda = new ImageIcon(aux.getImage().getScaledInstance(512/10, 512/10, Image.SCALE_DEFAULT));
+
 
 
         i.setLayout(null);

@@ -18,6 +18,9 @@ import java.sql.*;
 import java.util.ArrayList;
 
 import domain.movimientos.Ataque;
+import domain.movimientos.MO;
+import domain.movimientos.MT;
+import domain.movimientos.Maquina;
 import domain.stats.Pokemon;
 
 /**
@@ -59,23 +62,38 @@ public class Conexion {
 
     /**
      *
-     * @return nombre de todos los pokemons.
+     * @return Maquinas Técnicas o ocultas.
      */
-    public static ArrayList<String> pokemonNombres() {
+    public static ArrayList<Maquina> maquinas() {
 
 
-        ArrayList<String> pokemons = new ArrayList<>();
+        ArrayList<Maquina> maquinas = new ArrayList<>();
+
         try {
-            ResultSet resultado = stmt.executeQuery("select nombre from pokemon");
+            ResultSet resultado1= stmt.executeQuery("select DISTINCT mo.mo, m.nombre from MO mo, formaAprendizaje fa, pokemonMovimientoForma pMF , movimiento m where " +
+                    "mo.idFormaAprendizaje = fa.idFormaAprendizaje and fa.idFormaAprendizaje = pMF.idFormaAprendizaje and pMF.idMovimiento = m.idMovimiento order by mo.mo");
 
-            while (resultado.next()){
-                pokemons.add(resultado.getString("Nombre"));
+            while (resultado1.next()){
+                Maquina mo = new MO();
+                mo.setNombre(resultado1.getString("MO"));
+                mo.setNombreAtaque(resultado1.getString("Nombre"));
+                maquinas.add(mo);
+
+            }
+            ResultSet resultado2= stmt.executeQuery("select DISTINCT mt.mt, m.nombre from MT mt, formaAprendizaje fa, pokemonMovimientoForma pMF , movimiento m where " +
+                    "mt.idFormaAprendizaje = fa.idFormaAprendizaje and fa.idFormaAprendizaje = pMF.idFormaAprendizaje and pMF.idMovimiento = m.idMovimiento ORDER BY mt.mt");
+
+            while (resultado1.next()){
+                Maquina mt = new MT();
+                mt.setNombre(resultado2.getString("MT"));
+                mt.setNombreAtaque(resultado2.getString("Nombre"));
+                maquinas.add(mt);
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return pokemons;
+        return maquinas;
 
     }
 
