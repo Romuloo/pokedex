@@ -14,7 +14,6 @@ import java.util.logging.Logger;
  *
  * @author Javier Linares Castrillon
  * @author Andrés Iturria Soler
- * @author Samuel Aragonés Lozano
  *
  */
 
@@ -30,7 +29,6 @@ public class Start {
     public static void start(){
 
         try {
-            Conexion.conectar();
             JTabbedPane jt = new JTabbedPane();
             PanelMapa p = new PanelMapa();
             ListaPokemons l = new ListaPokemons();

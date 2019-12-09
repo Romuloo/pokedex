@@ -13,6 +13,7 @@
  */
 
 package app;
+import DAO.Conexion;
 import app.before.Begin;
 
 /**
@@ -33,6 +34,7 @@ public class Main {
      * Método Main desde donde se ejecuta la app.
      */
     public static void main(String[] args){
+            Conexion.conectar();
             Begin.init();
     }
 }
