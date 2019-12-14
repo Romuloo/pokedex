@@ -73,10 +73,7 @@ public class Ataques extends JPanel {
         g.drawString("Ataques de " + pokeName, 90, 30);
 
     }
-    private void addAtaques(){
-
-        for(int i = 0; i < ataques().size(); i++) modelo.add(i, ataques().get(i));
-    }
+    private void addAtaques(){ for(int i = 0; i < ataques().size(); i++) modelo.add(i, ataques().get(i)); }
 
     private void removePokemons(){
         for(int i = ataques().size() - 1; i >= 0; i--) modelo.remove(i);

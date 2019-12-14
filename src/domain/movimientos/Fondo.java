@@ -35,9 +35,8 @@ public class Fondo extends JPanel {
     }
 
     public void paint(Graphics grafico) {
-        Dimension height = getSize();
         ImageIcon Img = new ImageIcon("res/imagenes/esteFondo.png");
-        grafico.drawImage(Img.getImage(), 0, 0, height.width, height.height, null);
+        grafico.drawImage(Img.getImage(), 0, 0, (1500/3)*2, (1061/3)*2, null);
 
         ImageIcon movs = new ImageIcon("res/imagenes/movs.png");
         grafico.drawImage(movs.getImage(), (1061/3)-50-60, 40-10, 400,90, null);

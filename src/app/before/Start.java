@@ -21,8 +21,8 @@ import java.util.logging.Logger;
  */
 public class Start {
 
-    private static ImageIcon aux = new ImageIcon("res/imagenes/icon.png");
-    private static Icon ayuda = new ImageIcon(aux.getImage().getScaledInstance(512/10, 512/10, Image.SCALE_DEFAULT));
+    private static ImageIcon aux = new ImageIcon("res/imagenes/localizaciones.png");
+    private static Icon ayuda = new ImageIcon(aux.getImage().getScaledInstance(1000/100*5, 1200/100*5, Image.SCALE_DEFAULT));
 
     private static ImageIcon ing = new ImageIcon("res/imagenes/iconAtaque.png");
     private static Icon ataques = new ImageIcon(ing.getImage().getScaledInstance(512/10, 512/10, Image.SCALE_DEFAULT));
@@ -62,6 +62,7 @@ public class Start {
             f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             f.setVisible(true);
             f.setResizable(false);
+
 
         } catch (SQLException ex) {
             Logger.getLogger(app.Main.class.getName()).log(Level.SEVERE, null, ex);

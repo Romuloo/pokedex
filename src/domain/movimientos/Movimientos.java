@@ -61,7 +61,6 @@ public class Movimientos extends JPanel {
 
     private Color x = new Color(13, 175, 207);
     private Color y = new Color(127, 28, 23, 253);
-    private Color z = new Color(30, 28, 127, 253);
 
 
     private JTextField fieldMaquina;
@@ -205,19 +204,8 @@ public class Movimientos extends JPanel {
         f.add(l6);
         f.add(l7);
 
-
-
-
-
-
-
-
         add(f, BorderLayout.CENTER);
     }
-
-
-
-
 
     private void addAtaques(){
 

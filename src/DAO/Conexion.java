@@ -49,6 +49,7 @@ public class Conexion {
 
         try {
             Class.forName("org.sqlite.JDBC");
+
             con = DriverManager.getConnection(url);
             stmt = con.createStatement();
 

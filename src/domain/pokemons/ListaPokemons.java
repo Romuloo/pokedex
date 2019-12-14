@@ -282,9 +282,7 @@ public class ListaPokemons extends JPanel {
 
 
     }
-    public void setIndexLista(int i){
-      list.setSelectedIndex(i);
-    }
+
 
     /**
      * Se encarga de pintar la imagen de fondo del panel.

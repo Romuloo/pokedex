@@ -40,9 +40,8 @@ public class Imagen extends JPanel {
      * @param grafico
      */
     public void paint(Graphics grafico) {
-        Dimension height = getSize();
         ImageIcon Img = new ImageIcon("res/imagenes/kanto.png");
-        grafico.drawImage(Img.getImage(), 0, 0, height.width, height.height, null);
+        grafico.drawImage(Img.getImage(), 0, 0, (1500/3)*2, (1061/3)*2, null);
         setOpaque(false);
         super.paint(grafico);
 

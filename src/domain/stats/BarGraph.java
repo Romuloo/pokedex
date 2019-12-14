@@ -113,9 +113,7 @@ public class BarGraph {
         FontMetrics fm = g.getFontMetrics(BAR_TITLE_FONT);
 
         for (BarGraphModel.BarItem item : model.items){
-
-
-
+            
             int percentHeight = ((int)((double)item.percentage/100 * model.getSize().height));
 
             int x = model.getX() + i * model.getHorizontalGap();
@@ -126,7 +124,6 @@ public class BarGraph {
 
             g.fillRect(x, y, w, h);
             i++;
-
 
             //Dibuja el titulo.
 

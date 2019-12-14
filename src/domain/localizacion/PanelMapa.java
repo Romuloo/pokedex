@@ -40,7 +40,7 @@ public class PanelMapa  extends JPanel{
     private JScrollPane s = new JScrollPane(list);
 
     private Imagen i = new Imagen();
-    private ImageIcon in = new ImageIcon("res/imagenes/icon.png");
+    private ImageIcon in = new ImageIcon("res/imagenes/localizaciones.png");
     private ImageIcon help = new ImageIcon("res/imagenes/help.png");
 
     private int indexLocalizacion;
@@ -116,13 +116,13 @@ public class PanelMapa  extends JPanel{
         i.add(b7);
         i.add(b8);
 
-        b1.setBounds(109,207, 30,30);
-        b2.setBounds(430,68, 30,30);
-        b3.setBounds(896,200, 30,30);
-        b4.setBounds(613,68, 30,30);
-        b5.setBounds(374,635, 30,30);
-        b6.setBounds(487,415, 30,30);
-        b7.setBounds(219,190, 30,30);
+        b1.setBounds(109,207, (1000/10)/3,(1200/10)/3);
+        b2.setBounds(430,68, (1000/10)/3,(1200/10)/3);
+        b3.setBounds(896,200, (1000/10)/3,(1200/10)/3);
+        b4.setBounds(613,68, (1000/10)/3,(1200/10)/3);
+        b5.setBounds(374,635, (1000/10)/3,(1200/10)/3);
+        b6.setBounds(487,415, (1000/10)/3,(1200/10)/3);
+        b7.setBounds(219,190, (1000/10)/3,(1200/10)/3);
         b8.setBounds(30,30,45,45);
 
         b1.setIcon(new ImageIcon(in.getImage().getScaledInstance(b1.getWidth(), b1.getHeight(), Image.SCALE_SMOOTH)));
