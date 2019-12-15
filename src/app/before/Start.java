@@ -57,8 +57,6 @@ public class Start {
             JFrame f = new JFrame();
             Movimientos m = new Movimientos();
 
-            jt.setLocation(0,0);
-
             jt.add(l);
             jt.add(m);
             jt.add(p);
@@ -66,7 +64,6 @@ public class Start {
             jt.setIconAt(2, ayuda);
             jt.setIconAt(1, ataques);
             jt.setIconAt(0, pokemons);
-
 
 
 
