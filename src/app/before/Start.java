@@ -50,12 +50,14 @@ public class Start {
     public static void start(){
 
         try {
+
             JTabbedPane jt = new JTabbedPane();
             PanelMapa p = new PanelMapa();
             ListaPokemons l = new ListaPokemons();
             JFrame f = new JFrame();
             Movimientos m = new Movimientos();
 
+            jt.setLocation(0,0);
 
             jt.add(l);
             jt.add(m);
@@ -71,6 +73,7 @@ public class Start {
             f.add(jt);
             jt.setBackground(Color.black);
             f.setTitle("Pokedex");
+            f.setBackground(new Color(39, 156, 207));
             f.setSize(((1500/3)*2)+100,(1061/3)*2+50);
             f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             f.setVisible(true);

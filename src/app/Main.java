@@ -16,6 +16,11 @@ package app;
 import DAO.Conexion;
 import app.before.Begin;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author Javier Linares Castrillon
@@ -29,12 +34,42 @@ import app.before.Begin;
  */
 public class Main {
 
+    private static JFrame f = new JFrame("->");
+    private static ImageIcon icon = new ImageIcon("res/imagenes/fotos/0.png");
+    private static Icon pokemons = new ImageIcon(icon.getImage().getScaledInstance(512/10, 512/10, Image.SCALE_DEFAULT));
+    private static JButton b = new JButton();
+
     /**
      *
      * Método Main desde donde se ejecuta la app.
      */
     public static void main(String[] args){
-            Conexion.conectar();
-            Begin.init();
+        initComponents();
+    }
+
+    private static void initComponents(){
+
+        b.setIcon(pokemons);
+        b.setOpaque(true);
+        b.setContentAreaFilled(false);
+        b.setBorderPainted(false);
+        b.setBorder(null);
+
+        f.add(b);
+
+        b.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                f.dispose();
+                Begin.init();
+
+            }
+        });
+        f.setSize(512/10*2,512/10*2);
+        f.setVisible(true);
+        f.setResizable(false);
+        f.setLocation(100,100);
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setBackground(new Color(180, 15, 15));
     }
 }
