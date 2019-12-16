@@ -47,9 +47,9 @@ public class Start {
      *
      * Método encargado de establecer conexión con la base de datos, inicializar el main Frame y correr el programa.
      */
-    public static void start(){
+    public static void start()  {
 
-        try {
+
 
             JTabbedPane jt = new JTabbedPane();
             PanelMapa p = new PanelMapa();
@@ -77,9 +77,6 @@ public class Start {
             f.setResizable(false);
 
 
-        } catch (SQLException ex) {
-            Logger.getLogger(app.Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
 }

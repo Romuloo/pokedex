@@ -72,7 +72,7 @@ public class ListaPokemons extends JPanel {
      * Constructor de la clase ListaPokemons.
      * @throws SQLException
      */
-    public ListaPokemons() throws SQLException {
+    public ListaPokemons() {
         super();
         setLayout(null);
         //comienzo de lista
@@ -249,6 +249,7 @@ public class ListaPokemons extends JPanel {
         stats.setBorderPainted(false);
         stats.setBorder(null);
 
+
         add(stats);
 
         ataques.setBounds(900, 300, 70, 70);
@@ -315,8 +316,6 @@ public class ListaPokemons extends JPanel {
                 fieldCategoria.setText(pokemons[indice].getCategoria());
                 fieldPeso.setText(Double.toString(pokemons[indice].getPeso()));
                 fieldAltura.setText(Double.toString(pokemons[indice].getAltura()));
-
-
                 //Actualizacion de Tipos
                 remove(fieldTipo1);
                 remove(fieldTipo2);
