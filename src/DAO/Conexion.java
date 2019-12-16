@@ -201,73 +201,48 @@ public class Conexion {
         return ataques;
     }
 
-    /**
-     *
-     * @return un arrayList con todos los movimientos
-     */
-    public static ArrayList<Ataque> movimientos(){
 
-        ArrayList<Ataque> ataques = new ArrayList<>();
-
-        try {
-            ResultSet resultado = stmt.executeQuery("select * from movimiento ORDER BY idMovimiento");
-            while (resultado.next()) {
-             Ataque a = new Ataque();
-             a.setNombre(resultado.getString("Nombre"));
-             a.setDescripcion(resultado.getString("Descripcion"));
-             a.setPp(resultado.getInt("pp"));
-             a.setPotencia(resultado.getInt("Potencia"));
-             a.setPrecision(resultado.getInt("Precision"));
-             a.setTipo("res/imagenes/tipos/" + resultado.getString("idTipo") + ".png");
-
-             ataques.add(a);
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return ataques;
-
-    }
 
     /**
      *
      * @return un arrayList de la clase Pokemon con todos los pokemons.
-     * @throws SQLException
      */
-    public static Pokemon[] getPokemons(){
+    public static ArrayList<Pokemon> getPokemons(){
 
 
-        Pokemon[] pokemons = new Pokemon[200];
+        ArrayList<Pokemon> pokemons = new ArrayList<>();
       try {
           ResultSet result1 = stmt.executeQuery("SELECT * FROM pokemon ORDER BY idpokemon");
 
-          int contador = 0;
+
 
           while (result1.next()) {
-              pokemons[contador] = new Pokemon();
-              pokemons[contador].setAltura(result1.getDouble("altura"));
-              pokemons[contador].setPeso(result1.getInt("peso"));
-              pokemons[contador].setCategoria(result1.getString("categoria"));
-              pokemons[contador].setId(result1.getInt("idpokemon"));
-              pokemons[contador].setName(result1.getString("nombre"));
-              pokemons[contador].setPath("res/imagenes/fotos/" + result1.getString("idPokemon") + ".png");
-              contador++;
+              Pokemon p = new Pokemon();
+              p.setAltura(result1.getDouble("altura"));
+              p.setPeso(result1.getInt("peso"));
+              p.setCategoria(result1.getString("categoria"));
+              p.setId(result1.getInt("idpokemon"));
+              p.setName(result1.getString("nombre"));
+              p.setPath("res/imagenes/fotos/" + result1.getString("idPokemon") + ".png");
+              pokemons.add(p);
           }
 
-          pokemons[151] = new Pokemon();
-          pokemons[151].setPath("res/imagenes/fotos/0.png");
+          Pokemon po = new Pokemon();
+          po.setPath("res/imagenes/fotos/0.png");
+          pokemons.add(po);
+
           ResultSet result2 = stmt.executeQuery("SELECT * FROM pokemontipo ORDER BY idPokemon");
           int indice;
           while (result2.next()) {
               indice = result2.getInt("idpokemon") - 1;
-              pokemons[indice].setTipo(result2.getInt("idTipo"));
+              pokemons.get(indice).setTipo(result2.getInt("idTipo"));
           }
           ResultSet result3 = stmt.executeQuery("SELECT * FROM lineaEVo ORDER BY idPokemon");
           while (result3.next()) {
               indice = result3.getInt("idpokemon") - 1;
-              pokemons[indice].setLineaEvo(result3.getInt("evo1"));
-              pokemons[indice].setLineaEvo(result3.getInt("evo2"));
-              pokemons[indice].setLineaEvo(result3.getInt("evo3"));
+              pokemons.get(indice).setLineaEvo(result3.getInt("evo1"));
+              pokemons.get(indice).setLineaEvo(result3.getInt("evo2"));
+              pokemons.get(indice).setLineaEvo(result3.getInt("evo3"));
 
 
           }
