@@ -20,7 +20,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -47,7 +46,6 @@ public class ListaPokemons extends JPanel {
     private JList list;
     private DefaultListModel listModel;
     private JScrollPane listScrollPane;
-    private BufferedImage image;
     private JTextField fieldNombre, fieldCategoria, fieldPeso, fieldAltura;
     private JLabel labelNombre, labelCategoria, labelPeso, labelAltura, imageLabel, flecha1, flecha2;
     private JLabel labelEvo1, labelEvo2, labelEvo3, fieldTipo1, fieldTipo2, tituloTipo1, tituloTipo2;
@@ -64,18 +62,13 @@ public class ListaPokemons extends JPanel {
     private JButton stats = new JButton();
     private JButton ataques = new JButton();
 
-    //private Font font = new Font("Calibri", Font.BOLD, 12);
 
 
 
     /**
-     * Constructor de la clase ListaPokemons.
-     * @throws SQLException
+     * Constructor de la class
      */
-    public ListaPokemons() {
-        super();
-        setLayout(null);
-        //comienzo de lista
+    private void initLista(){
 
         listModel = new DefaultListModel();
         for (int i = 0; i <= 150; i++) {
@@ -96,8 +89,9 @@ public class ListaPokemons extends JPanel {
         //Fin de Lista
         setBackground(Color.green);
 
+    }
 
-        //Comienzo de campos de texto
+    private void initComponentes(){
         labelNombre = new JLabel("Nombre");
         labelCategoria = new JLabel("Categoria");
         labelPeso = new JLabel("Peso");
@@ -265,7 +259,7 @@ public class ListaPokemons extends JPanel {
         stats.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                 Stats.start(new Oyente().getPokemon());
+                Stats.start(new Oyente().getPokemon());
 
             }
         });
@@ -279,9 +273,14 @@ public class ListaPokemons extends JPanel {
             }
         });
 
+    }
 
+    public ListaPokemons() {
+        super();
+        setLayout(null);
 
-
+        initLista();
+        initComponentes();
     }
 
 
