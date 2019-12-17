@@ -73,7 +73,7 @@ public class ListaPokemons extends JPanel {
 
         listModel = new DefaultListModel();
         for (int i = 0; i <= 150; i++) {
-            listModel.addElement(initPokemons().get(i).getName());
+            listModel.addElement(" " + initPokemons().get(i).getId() +  "  " + initPokemons().get(i).getName());
         }
 
 
@@ -211,9 +211,9 @@ public class ListaPokemons extends JPanel {
         int evo2 = lineaEvo.get(1) - 1;
         int evo3 = lineaEvo.get(2) - 1;
 
-        imageEvo1 = new ImageIcon(pokemons.get(indice).getPath());
-        imageEvo2 = new ImageIcon(pokemons.get(indice).getPath());
-        imageEvo3 = new ImageIcon(pokemons.get(indice).getPath());
+        imageEvo1 = new ImageIcon(pokemons.get(evo1).getPath());
+        imageEvo2 = new ImageIcon(pokemons.get(evo2).getPath());
+        imageEvo3 = new ImageIcon(pokemons.get(evo3).getPath());
         labelEvo1 = new JLabel(imageEvo1);
         labelEvo2 = new JLabel(imageEvo2);
         labelEvo3 = new JLabel(imageEvo3);

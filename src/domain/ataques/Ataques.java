@@ -114,7 +114,7 @@ public class Ataques extends JPanel {
 
         frameManager();
         frame.setLocationRelativeTo(null);
-        frame.setLocation(1000,1000);
+        frame.setLocation(1060,0);
         frame.setTitle("Ataques de " + name);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setSize(480, 840);

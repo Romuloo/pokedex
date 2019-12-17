@@ -108,7 +108,7 @@ public class Stats extends JPanel {
 
         frameManager();
         frame.setLocationRelativeTo(null);
-        frame.setLocation(1000,1000);
+        frame.setLocation(1060,0);
         frame.setTitle("Stats de " + p.getName());
         thisPath = p.getPath();
         thisname = p.getName();

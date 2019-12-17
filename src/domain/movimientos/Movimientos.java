@@ -209,7 +209,7 @@ public class Movimientos extends JPanel {
 
     private void addAtaques(){
 
-        for(int i = 0; i < ataques().size(); i++) modelo.add(i, ataques().get(i).getNombre());
+        for(int i = 0; i < ataques().size(); i++) modelo.add(i, " " + ataques().get(i).getNombre());
     }
 
 
