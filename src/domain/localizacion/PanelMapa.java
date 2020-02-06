@@ -237,7 +237,6 @@ public class PanelMapa  extends JPanel{
 
     }
 
-
     /**
      * Construye un PanelMapa.
      */

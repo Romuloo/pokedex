@@ -164,12 +164,12 @@ public class Movimientos extends JPanel {
         f.add(l7);
 
         l1.setBounds(75,50+100+100-60, 150,40);
-        l2.setBounds(75,100+100+100-60,105*3,40);
-        l3.setBounds(75+400,150+100-60,60*3,40);
-        l4.setBounds(75+400,200+100-60,60*3,40);
-        l5.setBounds(75,250+100-60,80*3,40);
-        l6.setBounds(40,450-100,80*3,40);
-        l7.setBounds(270,250+100-60,60,40);
+        l2.setBounds(75,100+100+100-60,315,40);
+        l3.setBounds(75+400,150+100-60,180,40);
+        l4.setBounds(75+400,200+100-60,180,40);
+        l5.setBounds(75,290,240,40);
+        l6.setBounds(40,350,240,40);
+        l7.setBounds(270,290,60,40);
 
         f.add(fieldNombre);
         f.add(fieldPP);

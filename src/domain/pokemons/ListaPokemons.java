@@ -46,7 +46,7 @@ public class ListaPokemons extends JPanel {
     private DefaultListModel listModel;
     private JScrollPane listScrollPane;
     private JTextField fieldNombre, fieldCategoria, fieldPeso, fieldAltura;
-    private JLabel labelNombre, labelCategoria, labelPeso, labelAltura, imageLabel, flecha1, flecha2;
+    private JLabel labelNombre, labelCategoria, labelPeso, labelAltura, imageLabel, flecha1, flecha2, inmu, efi, deb;
     private JLabel labelEvo1, labelEvo2, labelEvo3, fieldTipo1, fieldTipo2, tituloTipo1, tituloTipo2;
     private ArrayList<Pokemon> pokemons;
     private ImageIcon imagenPrueba, flecha, imageEvo1, imageEvo2, imageEvo3, imageTipo1, imageTipo2;
@@ -61,6 +61,9 @@ public class ListaPokemons extends JPanel {
     private JButton stats = new JButton();
     private JButton ataques = new JButton();
 
+    private ArrayList<JLabel> tiposInmus = new ArrayList<>();
+    private ArrayList<JLabel> tiposDebs = new ArrayList<>();
+    private ArrayList<JLabel> tiposEfis = new ArrayList<>();
 
 
 
@@ -98,10 +101,12 @@ public class ListaPokemons extends JPanel {
         labelPeso = new JLabel("Peso");
         labelAltura = new JLabel("Altura");
 
+
         labelNombre.setFont(font);
         labelCategoria.setFont(font);
         labelPeso.setFont(font);
         labelAltura.setFont(font);
+
 
         labelNombre.setForeground(Color.darkGray);
         labelCategoria.setForeground(Color.darkGray);
@@ -126,26 +131,26 @@ public class ListaPokemons extends JPanel {
         add(labelNombre);
         add(fieldNombre);
 
-        labelNombre.setBounds(275, 50+50+30+20, 150, 30);
-        fieldNombre.setBounds(260, 75+50+30+20, 100, 30);
+        labelNombre.setBounds(275+20, 50+50+30+20, 150, 30);
+        fieldNombre.setBounds(260+20, 75+50+30+20, 100, 30);
 
         add(labelCategoria);
         add(fieldCategoria);
 
-        labelCategoria.setBounds(270, 125+50+30+20, 150, 30);
-        fieldCategoria.setBounds(260, 150+50+30+20, 100, 30);
+        labelCategoria.setBounds(270+20, 125+50+30+20, 150, 30);
+        fieldCategoria.setBounds(260+20, 150+50+30+20, 100, 30);
 
         add(labelPeso);
         add(fieldPeso);
 
-        labelPeso.setBounds(285, 200+50+30+20, 100, 30);
-        fieldPeso.setBounds(255, 225+50+30+20, 100, 30);
+        labelPeso.setBounds(285+20, 200+50+30+20, 100, 30);
+        fieldPeso.setBounds(255+20, 225+50+30+20, 100, 30);
 
         add(labelAltura);
         add(fieldAltura);
 
-        labelAltura.setBounds(282, 275+50+30+20, 100, 30);
-        fieldAltura.setBounds(260, 300+50+30+20, 100, 30);
+        labelAltura.setBounds(282+20, 275+50+30+20, 100, 30);
+        fieldAltura.setBounds(260+20, 300+50+30+20, 100, 30);
 
         fieldNombre.setOpaque(false);
         fieldNombre.setBorder(null);
@@ -172,7 +177,7 @@ public class ListaPokemons extends JPanel {
         imagenPrueba = new ImageIcon(pokemons.get(indice).getPath());
         imageLabel = new JLabel(imagenPrueba);
         add(imageLabel);
-        imageLabel.setBounds(500, 25+100, 300, 300);
+        imageLabel.setBounds(500-30, 25+100, 300, 300);
 
 
         tituloTipo1 = new JLabel("Tipo 1");
@@ -186,20 +191,20 @@ public class ListaPokemons extends JPanel {
         tituloTipo2.setForeground(Color.darkGray);
 
 
-        tituloTipo1.setBounds(548, 300+60, 150, 50);
-        tituloTipo2.setBounds(698, 300+60, 150, 50);
+        tituloTipo1.setBounds(548-30, 300+60, 150, 50);
+        tituloTipo2.setBounds(698-30, 300+60, 150, 50);
 
 
         imageTipo1 = new ImageIcon("res/imagenes/tipos/" + Integer.toString(pokemons.get(indice).getTipo(0)) + ".png");
         fieldTipo1 = new JLabel(imageTipo1);
         add(fieldTipo1);
-        fieldTipo1.setBounds(500, 325+60, 150, 50);
+        fieldTipo1.setBounds(500-30, 325+60, 150, 50);
 
 
         imageTipo2 = new ImageIcon("res/imagenes/tipos/" + Integer.toString(pokemons.get(indice).getTipo(1)) + ".png");
         fieldTipo2 = new JLabel(imageTipo2);
         add(fieldTipo2);
-        fieldTipo2.setBounds(650, 325+60, 150, 50);
+        fieldTipo2.setBounds(650-30, 325+60, 150, 50);
         //Termina imagen Pokemon y tipos
 
 
@@ -236,7 +241,7 @@ public class ListaPokemons extends JPanel {
 
 
 
-        stats.setBounds(900, 200, 70, 70);
+        stats.setBounds(180, 200, 70, 70);
 
         stats.setIcon(new ImageIcon(in.getImage().getScaledInstance(stats.getWidth(), stats.getHeight(), Image.SCALE_SMOOTH)));
         stats.setOpaque(true);
@@ -247,7 +252,7 @@ public class ListaPokemons extends JPanel {
 
         add(stats);
 
-        ataques.setBounds(900, 300, 70, 70);
+        ataques.setBounds(180, 300, 70, 70);
 
         ataques.setIcon(new ImageIcon(ing.getImage().getScaledInstance(ataques.getWidth(), ataques.getHeight(), Image.SCALE_SMOOTH)));
         ataques.setOpaque(true);
@@ -274,7 +279,110 @@ public class ListaPokemons extends JPanel {
             }
         });
 
+        //Inicializar las eficiencias
+        //----------------------------------
+
+        inmu = new JLabel("Inmunidades");
+        efi = new JLabel("Eficacias");
+        deb = new JLabel("Debilidades");
+
+        inmu.setFont(font);
+        efi.setFont(font);
+        deb.setFont(font);
+
+        inmu.setForeground(Color.darkGray);
+        efi.setForeground(Color.darkGray);
+        deb.setForeground(Color.darkGray);
+
+        inmu.setBounds(500-30+250+150, 150-20, 200, 30);
+        efi.setBounds(500-30+250+150+15, 250-10-20, 200, 30);
+        deb.setBounds(500-30+250+150+5, 350+20-20, 200, 30);
+
+        add(efi);
+        add(deb);
+        add(inmu);
+
+
+        ArrayList<Integer> inmus = new ArrayList<>();
+        ArrayList<Integer> efis = new ArrayList<>();
+        ArrayList<Integer> debs = new ArrayList<>();
+
+        inmus.add(12);
+        inmus.add(15);
+        inmus.add(7);
+        inmus.add(6);
+
+        efis.add(1);
+        efis.add(2);
+        efis.add(3);
+        efis.add(4);
+        efis.add(5);
+        efis.add(6);
+        efis.add(7);
+        efis.add(9);
+
+        debs.add(2);
+        debs.add(3);
+        debs.add(1);
+        debs.add(5);
+        debs.add(6);
+        debs.add(7);
+        debs.add(8);
+
+        pokemons.get(indice).setDebs(debs);
+        pokemons.get(indice).setEfis(efis);
+        pokemons.get(indice).setInmus(inmus);
+
+        int inmuX = 820;
+        int inmuY = 170;
+
+        int efisX = 820;
+        int efisY =  270;
+
+        int debsX = 820;
+        int debsY = 390;
+
+
+        for(Integer i : pokemons.get(indice).getInmus()){
+            JLabel j = new JLabel(new ImageIcon("res/imagenes/tipos/" + i + ".png"));
+            j.setBounds(inmuX, inmuY, 50, 30);
+            tiposInmus.add(j);
+            inmuX += 50;
+            if(inmuX >= 1050) {
+                inmuY +=40;
+                inmuX = 820;
+            }
+            add(j);
+        }
+
+        for(Integer i : pokemons.get(indice).getEfis()){
+            JLabel j = new JLabel(new ImageIcon("res/imagenes/tipos/" + i + ".png"));
+            j.setBounds(efisX, efisY, 50, 30);
+            tiposEfis.add(j);
+
+            efisX += 50;
+            if(efisX >= 1050) {
+                efisY +=40;
+                efisX = 820;
+            }
+            add(j);
+        }
+        for(Integer i : pokemons.get(indice).getDebs()){
+            JLabel j = new JLabel(new ImageIcon("res/imagenes/tipos/" + i + ".png"));
+            j.setBounds(debsX, debsY, 50, 30);
+            tiposDebs.add(j);
+            debsX += 50;
+            if(debsX >= 1050) {
+                debsY +=40;
+                debsX = 820;
+            }
+            add(j);
+        }
+
+
+
     }
+
     /**
      * Constructor de la class
      */
@@ -297,7 +405,7 @@ public class ListaPokemons extends JPanel {
 
 
         ImageIcon Imagen = new ImageIcon("res/imagenes/logo.png");
-        grafico.drawImage(Imagen.getImage(), 475, 30,1632/5,928/5, null);
+        grafico.drawImage(Imagen.getImage(), 475-30, 30,1632/5,928/5, null);
         setOpaque(false);
         super.paint(grafico);
 
@@ -308,12 +416,12 @@ public class ListaPokemons extends JPanel {
      * Esta clase privada actúa como Observer.
      */
     private class Oyente implements ListSelectionListener {
-
-        @Override
+            @Override
         public void valueChanged(ListSelectionEvent e) {
             if (!e.getValueIsAdjusting()) {
                 //Actualizacion de campos de texto
                 int indice = list.getSelectedIndex();
+
                 fieldNombre.setText(pokemons.get(indice).getName());
                 fieldCategoria.setText(pokemons.get(indice).getCategoria());
                 fieldPeso.setText(Double.toString(pokemons.get(indice).getPeso()));
@@ -327,8 +435,12 @@ public class ListaPokemons extends JPanel {
                 fieldTipo2 = new JLabel(imageTipo2);
                 add(fieldTipo1);
                 add(fieldTipo2);
-                fieldTipo1.setBounds(500, 325+60, 150, 50);
-                fieldTipo2.setBounds(650, 325+60, 150, 50);
+                fieldTipo1.setBounds(500-30, 325+60, 150, 50);
+                fieldTipo2.setBounds(650-30, 325+60, 150, 50);
+
+                for(JLabel l : tiposInmus) remove(l);
+                for(JLabel ef : tiposEfis) remove(ef);
+                for(JLabel d : tiposDebs) remove(d);
 
 
                 //Actualizacion de imagenes.
@@ -336,7 +448,7 @@ public class ListaPokemons extends JPanel {
                 imagenPrueba = new ImageIcon(pokemons.get(indice).getPath());
                 imageLabel = new JLabel(imagenPrueba);
                 add(imageLabel);
-                imageLabel.setBounds(500, 25+100, 300, 300);
+                imageLabel.setBounds(500-30, 25+100, 300, 300);
 
                 //Actualizacion imagenes evoluciones
                 remove(labelEvo1);
@@ -370,6 +482,87 @@ public class ListaPokemons extends JPanel {
                 labelEvo3.setBounds(700 + 150, 450, 200, 220);
                 
 
+
+                //Actualizar las eficiencias
+
+
+
+
+                ArrayList<Integer> inmus = new ArrayList<>();
+                ArrayList<Integer> efis = new ArrayList<>();
+                ArrayList<Integer> debs = new ArrayList<>();
+
+                inmus.add(12);
+                inmus.add(15);
+                inmus.add(7);
+                inmus.add(6);
+
+                efis.add(1);
+                efis.add(2);
+                efis.add(3);
+                efis.add(4);
+                efis.add(5);
+                efis.add(6);
+                efis.add(7);
+                efis.add(9);
+
+                debs.add(2);
+                debs.add(3);
+                debs.add(1);
+                debs.add(5);
+                debs.add(6);
+                debs.add(7);
+                debs.add(8);
+
+                pokemons.get(indice).setDebs(debs);
+                pokemons.get(indice).setEfis(efis);
+                pokemons.get(indice).setInmus(inmus);
+
+                int inmuX = 820;
+                int inmuY = 170;
+
+                int efisX = 820;
+                int efisY =  270;
+
+                int debsX = 820;
+                int debsY = 390;
+
+
+                for(Integer i : pokemons.get(indice).getInmus()){
+                    JLabel j = new JLabel(new ImageIcon("res/imagenes/tipos/" + i + ".png"));
+                    j.setBounds(inmuX, inmuY, 50, 30);
+                    tiposInmus.add(j);
+                    inmuX += 50;
+                    if(inmuX >= 1050) {
+                        inmuY +=40;
+                        inmuX = 820;
+                    }
+                    add(j);
+                }
+
+                for(Integer i : pokemons.get(indice).getEfis()){
+                    JLabel j = new JLabel(new ImageIcon("res/imagenes/tipos/" + i + ".png"));
+                    j.setBounds(efisX, efisY, 50, 30);
+                    tiposEfis.add(j);
+
+                    efisX += 50;
+                    if(efisX >= 1050) {
+                        efisY +=40;
+                        efisX = 820;
+                    }
+                    add(j);
+                }
+                for(Integer i : pokemons.get(indice).getDebs()){
+                    JLabel j = new JLabel(new ImageIcon("res/imagenes/tipos/" + i + ".png"));
+                    j.setBounds(debsX, debsY, 50, 30);
+                    tiposDebs.add(j);
+                    debsX += 50;
+                    if(debsX >= 1050) {
+                        debsY +=40;
+                        debsX = 820;
+                    }
+                    add(j);
+                }
 
             }
         }

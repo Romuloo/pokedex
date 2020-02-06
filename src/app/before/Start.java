@@ -32,6 +32,8 @@ import java.awt.*;
  */
 public class Start {
 
+
+
     private static ImageIcon aux = new ImageIcon("res/imagenes/localizaciones.png");
     private static Icon ayuda = new ImageIcon(aux.getImage().getScaledInstance(1000/100*5, 1200/100*5, Image.SCALE_DEFAULT));
 
@@ -41,19 +43,18 @@ public class Start {
     private static ImageIcon icon = new ImageIcon("res/imagenes/fotos/0.png");
     private static Icon pokemons = new ImageIcon(icon.getImage().getScaledInstance(512/10, 512/10, Image.SCALE_DEFAULT));
 
+    private static JTabbedPane jt = new JTabbedPane();
+    private static PanelMapa p = new PanelMapa();
+    private static ListaPokemons l = new ListaPokemons();
+    private static JFrame f = new JFrame();
+    private static Movimientos m = new Movimientos();
+
+
     /**
      *
      * Método encargado de establecer conexión con la base de datos, inicializar el main Frame y correr el programa.
      */
     public static void start()  {
-
-
-
-            JTabbedPane jt = new JTabbedPane();
-            PanelMapa p = new PanelMapa();
-            ListaPokemons l = new ListaPokemons();
-            JFrame f = new JFrame();
-            Movimientos m = new Movimientos();
 
             jt.add(l);
             jt.add(m);
@@ -73,7 +74,6 @@ public class Start {
             f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             f.setVisible(true);
             f.setResizable(false);
-
 
     }
 

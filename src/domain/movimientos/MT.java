@@ -25,7 +25,7 @@ package domain.movimientos;
  */
 public class MT extends Maquina {
 
-    public MT(){
+    public MT() {
 
     }
 }

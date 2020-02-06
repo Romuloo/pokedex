@@ -33,9 +33,36 @@ public class Pokemon {
     private ArrayList<Integer> tipo = new ArrayList<>();
     private ArrayList<Integer> lineaEvo=new ArrayList<>();
 
-
+    private ArrayList<Integer> inmus = new ArrayList<>();
+    private ArrayList<Integer> efis = new ArrayList<>();
+    private ArrayList<Integer> debs = new ArrayList<>();
 
     public Pokemon(){
+    }
+
+
+    public ArrayList<Integer> getInmus() {
+        return inmus;
+    }
+
+    public void setInmus(ArrayList<Integer> inmus) {
+        this.inmus = inmus;
+    }
+
+    public ArrayList<Integer> getEfis() {
+        return efis;
+    }
+
+    public void setEfis(ArrayList<Integer> efis) {
+        this.efis = efis;
+    }
+
+    public ArrayList<Integer> getDebs() {
+        return debs;
+    }
+
+    public void setDebs(ArrayList<Integer> debs) {
+        this.debs = debs;
     }
 
     public void setId(int id){

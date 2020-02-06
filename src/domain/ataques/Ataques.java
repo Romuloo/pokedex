@@ -89,7 +89,7 @@ public class Ataques extends JPanel {
         setModelo();
         list.setBackground(Color.getColor("Blue", c));
         s.setBackground(Color.green);
-        s.setBounds(5,460,470,310);
+        s.setBounds(5+(470/3),460,470/2,310);
         add(s);
 
     }

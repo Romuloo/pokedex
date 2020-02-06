@@ -14,8 +14,9 @@
 
 package app;
 import app.before.Begin;
- 
- /**
+import app.before.Start;
+
+/**
  *
  * @author Javier Linares Castrillon
  * @author Andrés Iturria Soler
@@ -36,7 +37,9 @@ public class Main {
      */
     public static void main(String[] args){
         Begin.comenzar();
+
     }
+
 
 
 }

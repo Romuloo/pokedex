@@ -93,7 +93,6 @@ public class Stats extends JPanel {
     private synchronized static void frameManagerAux(){
         frame.dispose();
         frame = new JFrame();
-
     }
 
 

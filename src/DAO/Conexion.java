@@ -283,6 +283,21 @@ public class Conexion {
         return ataques;
     }
 
+/*
+    public static ArrayList<Integer> getEfis(){
+
+    }
+
+    public static ArrayList<Integer> getInmus(){
+
+    }
+
+    public static ArrayList<Integer> getDebs(){
+
+    }
+
+ */
+
 
 
 }
