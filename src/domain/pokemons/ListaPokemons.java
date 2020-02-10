@@ -25,6 +25,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 
+import DAO.Conexion;
 import domain.ataques.Ataques;
 import domain.stats.Pokemon;
 import domain.stats.Stats;
@@ -283,7 +284,7 @@ public class ListaPokemons extends JPanel {
         //----------------------------------
 
         inmu = new JLabel("Inmunidades");
-        efi = new JLabel("Eficacias");
+        efi = new JLabel("Resistencias");
         deb = new JLabel("Debilidades");
 
         inmu.setFont(font);
@@ -303,35 +304,16 @@ public class ListaPokemons extends JPanel {
         add(inmu);
 
 
-        ArrayList<Integer> inmus = new ArrayList<>();
-        ArrayList<Integer> efis = new ArrayList<>();
-        ArrayList<Integer> debs = new ArrayList<>();
+        ArrayList<String> inmus = Conexion.getInmus(1);
+        ArrayList<String> efis = Conexion.getEfis(1);
+        ArrayList<String> debs = Conexion.getDebs(1);
 
-        inmus.add(12);
-        inmus.add(15);
-        inmus.add(7);
-        inmus.add(6);
 
-        efis.add(1);
-        efis.add(2);
-        efis.add(3);
-        efis.add(4);
-        efis.add(5);
-        efis.add(6);
-        efis.add(7);
-        efis.add(9);
+        for(String s : inmus) tiposInmus.add(new JLabel(new ImageIcon(s)));
+        for(String s : efis) tiposEfis.add(new JLabel(new ImageIcon(s)));
+        for(String s : debs) tiposDebs.add(new JLabel(new ImageIcon(s)));
 
-        debs.add(2);
-        debs.add(3);
-        debs.add(1);
-        debs.add(5);
-        debs.add(6);
-        debs.add(7);
-        debs.add(8);
 
-        pokemons.get(indice).setDebs(debs);
-        pokemons.get(indice).setEfis(efis);
-        pokemons.get(indice).setInmus(inmus);
 
         int inmuX = 820;
         int inmuY = 170;
@@ -343,40 +325,33 @@ public class ListaPokemons extends JPanel {
         int debsY = 390;
 
 
-        for(Integer i : pokemons.get(indice).getInmus()){
-            JLabel j = new JLabel(new ImageIcon("res/imagenes/tipos/" + i + ".png"));
-            j.setBounds(inmuX, inmuY, 50, 30);
-            tiposInmus.add(j);
+        for(JLabel l : tiposInmus){
+            l.setBounds(inmuX, inmuY, 50, 30);
             inmuX += 50;
             if(inmuX >= 1050) {
                 inmuY +=40;
                 inmuX = 820;
             }
-            add(j);
+            add(l);
         }
 
-        for(Integer i : pokemons.get(indice).getEfis()){
-            JLabel j = new JLabel(new ImageIcon("res/imagenes/tipos/" + i + ".png"));
-            j.setBounds(efisX, efisY, 50, 30);
-            tiposEfis.add(j);
-
+        for(JLabel l : tiposEfis){
+            l.setBounds(efisX, efisY, 50, 30);
             efisX += 50;
             if(efisX >= 1050) {
                 efisY +=40;
                 efisX = 820;
             }
-            add(j);
+            add(l);
         }
-        for(Integer i : pokemons.get(indice).getDebs()){
-            JLabel j = new JLabel(new ImageIcon("res/imagenes/tipos/" + i + ".png"));
-            j.setBounds(debsX, debsY, 50, 30);
-            tiposDebs.add(j);
+        for(JLabel l : tiposDebs){
+            l.setBounds(debsX, debsY, 50, 30);
             debsX += 50;
             if(debsX >= 1050) {
                 debsY +=40;
                 debsX = 820;
             }
-            add(j);
+            add(l);
         }
 
 
@@ -438,9 +413,7 @@ public class ListaPokemons extends JPanel {
                 fieldTipo1.setBounds(500-30, 325+60, 150, 50);
                 fieldTipo2.setBounds(650-30, 325+60, 150, 50);
 
-                for(JLabel l : tiposInmus) remove(l);
-                for(JLabel ef : tiposEfis) remove(ef);
-                for(JLabel d : tiposDebs) remove(d);
+
 
 
                 //Actualizacion de imagenes.
@@ -480,14 +453,23 @@ public class ListaPokemons extends JPanel {
                 labelEvo1.setBounds(100 + 150, 450, 200, 220);
                 labelEvo2.setBounds(400 + 150, 450, 200, 220);
                 labelEvo3.setBounds(700 + 150, 450, 200, 220);
-                
+
+
+                if(!tiposInmus.isEmpty()) for(JLabel l : tiposInmus) remove(l);
+                if(!tiposEfis.isEmpty()) for(JLabel ef : tiposEfis) remove(ef);
+                if(!tiposDebs.isEmpty()) for(JLabel d : tiposDebs) remove(d);
+
+                for(JLabel l : tiposInmus) tiposInmus.remove(l);
+                for(JLabel l : tiposDebs) tiposEfis.remove(l);
+                for(JLabel l : tiposEfis) tiposDebs.remove(l);
+
 
 
                 //Actualizar las eficiencias
 
 
 
-
+/*
                 ArrayList<Integer> inmus = new ArrayList<>();
                 ArrayList<Integer> efis = new ArrayList<>();
                 ArrayList<Integer> debs = new ArrayList<>();
@@ -562,7 +544,7 @@ public class ListaPokemons extends JPanel {
                         debsX = 820;
                     }
                     add(j);
-                }
+                }*/
 
             }
         }
