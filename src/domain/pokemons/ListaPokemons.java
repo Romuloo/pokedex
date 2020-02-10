@@ -469,7 +469,7 @@ public class ListaPokemons extends JPanel {
 
 
 
-/*
+
                 ArrayList<Integer> inmus = new ArrayList<>();
                 ArrayList<Integer> efis = new ArrayList<>();
                 ArrayList<Integer> debs = new ArrayList<>();
@@ -510,41 +510,37 @@ public class ListaPokemons extends JPanel {
                 int debsY = 390;
 
 
-                for(Integer i : pokemons.get(indice).getInmus()){
-                    JLabel j = new JLabel(new ImageIcon("res/imagenes/tipos/" + i + ".png"));
-                    j.setBounds(inmuX, inmuY, 50, 30);
-                    tiposInmus.add(j);
+                for(String s : Conexion.getInmus(indice)){
+                    JLabel l = new JLabel(new ImageIcon(s));
+                    l.setBounds(inmuX, inmuY, 50, 30);
                     inmuX += 50;
                     if(inmuX >= 1050) {
                         inmuY +=40;
                         inmuX = 820;
                     }
-                    add(j);
+                    add(l);
                 }
 
-                for(Integer i : pokemons.get(indice).getEfis()){
-                    JLabel j = new JLabel(new ImageIcon("res/imagenes/tipos/" + i + ".png"));
-                    j.setBounds(efisX, efisY, 50, 30);
-                    tiposEfis.add(j);
-
-                    efisX += 50;
-                    if(efisX >= 1050) {
-                        efisY +=40;
-                        efisX = 820;
+                for(String s : Conexion.getEfis(indice)){
+                    JLabel t = new JLabel(new ImageIcon(s));
+                    t.setBounds(inmuX, inmuY, 50, 30);
+                    inmuX += 50;
+                    if(inmuX >= 1050) {
+                        inmuY +=40;
+                        inmuX = 820;
                     }
-                    add(j);
+                    add(t);
                 }
-                for(Integer i : pokemons.get(indice).getDebs()){
-                    JLabel j = new JLabel(new ImageIcon("res/imagenes/tipos/" + i + ".png"));
-                    j.setBounds(debsX, debsY, 50, 30);
-                    tiposDebs.add(j);
-                    debsX += 50;
-                    if(debsX >= 1050) {
-                        debsY +=40;
-                        debsX = 820;
+                for(String s : Conexion.getInmus(indice)){
+                    JLabel v = new JLabel(new ImageIcon(s));
+                    v.setBounds(inmuX, inmuY, 50, 30);
+                    inmuX += 50;
+                    if(inmuX >= 1050) {
+                        inmuY +=40;
+                        inmuX = 820;
                     }
-                    add(j);
-                }*/
+                    add(v);
+                }
 
             }
         }
