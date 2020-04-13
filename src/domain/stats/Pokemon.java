@@ -19,16 +19,11 @@ import java.util.ArrayList;
  * Clase encargada de definir un Pokemon. Utilizada para almacenar consultas.
  */
 public class Pokemon {
-    private int id;
+
     private String path, name, categoria;
-    private double peso;
-    private double altura;
-    private int ps;
-    private int at;
-    private int def;
-    private int ate;
-    private int defe;
-    private int vel;
+    private double peso, altura;
+    private int id, ps, at, def, ate, defe, vel;
+
 
     private ArrayList<Integer> tipo = new ArrayList<>();
     private ArrayList<Integer> lineaEvo=new ArrayList<>();

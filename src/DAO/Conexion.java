@@ -25,7 +25,6 @@ import domain.movimientos.MT;
 import domain.movimientos.Maquina;
 import domain.stats.Pokemon;
 
-import javax.swing.*;
 
 /**
  *
