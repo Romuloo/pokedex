@@ -16,6 +16,8 @@ package domain.localizacion;
 
 import DAO.Conexion;
 
+import game.Game;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -177,7 +179,9 @@ public class PanelMapa  extends JPanel{
 
         b1.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) { setModelo(1); }
+            public void actionPerformed(ActionEvent e) { setModelo(1);
+            Game.load();
+            }
         });
         b2.addActionListener(new ActionListener() {
             @Override

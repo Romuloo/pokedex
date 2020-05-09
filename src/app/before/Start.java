@@ -50,6 +50,9 @@ public class Start {
     private static Movimientos m = new Movimientos();
 
 
+    public static Frame getFrame(){
+        return f;
+    }
     /**
      *
      * Método encargado de establecer conexión con la base de datos, inicializar el main Frame y correr el programa.

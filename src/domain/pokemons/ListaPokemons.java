@@ -25,7 +25,6 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 
-import DAO.Conexion;
 import domain.ataques.Ataques;
 import domain.stats.Pokemon;
 import domain.stats.Stats;
@@ -277,7 +276,6 @@ public class ListaPokemons extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Stats.start(new Oyente().getPokemon());
-
             }
         });
 
